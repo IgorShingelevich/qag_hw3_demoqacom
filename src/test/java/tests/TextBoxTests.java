@@ -1,3 +1,5 @@
+package tests;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,7 +20,7 @@ static void setup() {
         // baseUrl = "https://demoqa.com"
         Configuration.baseUrl = "https://demoqa.com";
         //headless mode
-        Configuration.headless = true;
+        Configuration.headless = false;
         //position of the browser window
        //Configuration.browserPosition = "0,0";
 
