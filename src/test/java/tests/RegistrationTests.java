@@ -1,17 +1,18 @@
 package tests;
 
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
+
 
 public class RegistrationTests {
     @BeforeAll
@@ -36,8 +37,8 @@ static void setup() {
 
         //Configuration.browserSize = "0.5";
 
-        executeJavaScript("$('#fixedban').remove();"); //executeJavaScript in Selenide to remove the banner and footer
-        executeJavaScript("$('#footer').remove();");
+        executeJavaScript("$('#fixedban').remove();");
+        executeJavaScript("$('footer').remove();");
 
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
 
@@ -71,11 +72,10 @@ static void setup() {
         $("#city").$(byText("Delhi")).click(); //        $("#city").$("#react-select-4-option-0").click(); // other way
         $("#submit").click();
 
-       /* $("#output").shouldBe(Condition.visible);
-        $("#output #name").shouldHave(text(firstName));
-        $("#output #email").shouldHave(text(userEmail));*/
-
-
+       //assertions
+        $(".modal-title").should(appear);
+        $(".modal-title").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Igor"), text(lastName), text(userEmail), text(userNumber), text("Other"), text("30 January,1985"), text("Maths, Arts"), text("Sports"), text("a_test_png_logo.png"), text(currentAddress), text("NCR Delhi"));
 
 
     }
