@@ -2,7 +2,7 @@ package tests;
 
 
 
-import Pages.RegistrationPage;
+import Pages.registrationPage;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,16 +15,8 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class RegistrationWithPageObjectsTests {
-    @BeforeAll
-static void setup() {
-        Configuration.baseUrl = "https://demoqa.com";  // baseUrl = "https://demoqa.com"
-        Configuration.browserSize = "1920x1080"; // browserSize hd 1080p
-        Configuration.holdBrowserOpen = true;
-        Configuration.headless = false;    //headless mode
-        //position of the browser window
-       //Configuration.browserPosition = "0,0";
-    }
+public class RegistrationWithPageObjectsTests extends TestBase {
+
 
     @Test
     void succsessfulRegistrationTest() {
@@ -34,9 +26,13 @@ static void setup() {
         String userNumber = "1234567890";
         String currentAddress = "Moscow";
 
-        new RegistrationPage().openPage(); // open page
-        new RegistrationPage().setFirstName(firstName); // set first name
-        new RegistrationPage().setLastName(lastName); // set last name
+        // economy of memory
+
+        registrationPage.openPage(); // open page
+        registrationPage.setFirstName(firstName); // set first name
+        registrationPage.setLastName(lastName); // set last name
+        registrationPage.setEmail(userEmail); // set email
+        registrationPage.setGenterWrapper("Other");
 
 
 
@@ -44,18 +40,13 @@ static void setup() {
 
         $("#userEmail").setValue(userEmail);
         $("#userNumber").setValue(userNumber);
-        $("#genterWrapper").$(byText("Other")).click(); //informative
+
 
         //        $("label[for='gender-radio-1']").click(); //good
         //        $("#gender-radio-1").parent().click();  // not informative
         //        $(byText("Other")).click();  //may cause problems with translation into other languages. Other - is widespread word
 
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("January"); // other way  $(".react-datepicker__month-select").selectOptionByValue("1")
 
-
-        $(".react-datepicker__year-select").selectOptionByValue("1985");
-        $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click(); //syntax :not(.
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#subjectsInput").setValue("Arts").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click(); //informative
