@@ -64,7 +64,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
        //assertions
         $(".modal-title").should(appear);
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Igor"), text("Shingelevich"), text(userEmail), text(userNumber), text("Other"), text("30 January,1985"), text("Maths, Arts"), text("Sports"), text("a_test_png_logo.png"), text(currentAddress), text("NCR Delhi"));
+        $(".table-responsive").shouldHave(text("Igor"), text("Shingelevich"), text(userEmail), text(userNumber), text("Other"),  text("Maths, Arts"), text("Sports"), text("a_test_png_logo.png"), text(currentAddress), text("NCR Delhi"));
 
 
     }
