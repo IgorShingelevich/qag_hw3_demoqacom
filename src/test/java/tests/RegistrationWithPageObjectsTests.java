@@ -42,7 +42,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         $("#userNumber").setValue(userNumber);
 
 
-        //        $("label[for='gender-radio-1']").click(); //good
+        //        $("label[for='gender-radio-1']").clickk(); //good
         //        $("#gender-radio-1").parent().click();  // not informative
         //        $(byText("Other")).click();  //may cause problems with translation into other languages. Other - is widespread word
 

@@ -4,6 +4,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -19,14 +20,20 @@ public class RegistrationTests {
 static void setup() {
         Configuration.baseUrl = "https://demoqa.com";  // baseUrl = "https://demoqa.com"
         Configuration.browserSize = "1920x1080"; // browserSize hd 1080p
+        //full screen webdriver
+
+
+
+
         Configuration.holdBrowserOpen = true;
         Configuration.headless = false;    //headless mode
         //position of the browser window
        //Configuration.browserPosition = "0,0";
     }
-
+    @Tag("positive")
+    //
     @Test
-    void succsessfulRegistrationTest() {
+    void succsessfulRegistrationТест() {
         String firstName = "Igor";
         String lastName = "Shingelevich";
         String userEmail = "shingelevich@gmail.com";
