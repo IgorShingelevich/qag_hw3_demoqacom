@@ -1,12 +1,12 @@
 package tests;
 
-import Pages.registrationPage;
+import pages.RegistrationPage;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
 
-    Pages.registrationPage registrationPage = new registrationPage();
+    pages.RegistrationPage registrationPage = new RegistrationPage();
 
 
 
