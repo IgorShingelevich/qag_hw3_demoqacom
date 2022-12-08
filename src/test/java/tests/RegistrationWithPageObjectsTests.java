@@ -14,17 +14,27 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-
+/**
+ * Page Object organisation
+ * 1. Create a class for RegistrationPage
+ * 2. Create inside  RegistrationPage class  a method for opening the page - openPage() and put inside also the check that the page is open
+ * 3. Then call the method openPage() from the RegistrationPage class - new RegistrationPage.openPage() in RegistrationTest  test class
+ * 4. Put all locators in one place - RegistrationPage class
+ * 5. In RegistrationPage class set variables for locators.  For example: private SelenideElement firstNameInputLocator =  $("#firstName");
+ * 6. In TestBase class set variables for all input fields and call them in RegistrationPage class. For example: String firstName = "Igor";
+ * 7. Create a method for each locator variable and field value variable. For example: setFirstName(String value) { firstNameInputLocator.setValue(value); }
+ * 8. From RegistrationTest class call the method from the RegistrationPage class - new RegistrationPage.setFirstName(userName) in RegistrationTest  test class
+ * 9. In RegistrationPage class create a methods for filling all fields
+ * 10. In RegistrationTest class call the methods from the RegistrationPage class - new RegistrationPage.setFirstName(userName) in RegistrationTest  test class
+ *
+ * *
+ */
 public class RegistrationWithPageObjectsTests extends TestBase {
 
 
     @Test
     void succsessfulRegistrationTest() {
-        String firstName = "Igor";
-        String lastName = "Shingelevich";
-        String userEmail = "shingelevich@gmail.com";
-        String userNumber = "1234567890";
-        String currentAddress = "Moscow";
+
 
         // economy of memory
 

@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -6,9 +6,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class registrationPage {
+public class RegistrationPage {
     // optimization shouldHave(text(formTitle));
     private String TITLE_TEXT = "Student Registration Form";
+
 
     /*
     let's organise our locators in one place
@@ -35,7 +36,7 @@ public class registrationPage {
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT)); //check that the page is open at all
     }
 
-    // $("#firstName").setValue(firstName)
+    // use $("#firstName").setValue(firstName) as a method  setFirstName
     public void setFirstName(String value) {
 
         firstNameInputLocator.setValue(value);

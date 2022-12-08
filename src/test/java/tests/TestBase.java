@@ -6,6 +6,12 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
 
+    String firstName = "Igor";
+    String lastName = "Shingelevich";
+    String userEmail = "shingelevich@gmail.com";
+    String userNumber = "1234567890";
+    String currentAddress = "Moscow";
+
     pages.RegistrationPage registrationPage = new RegistrationPage();
 
 
