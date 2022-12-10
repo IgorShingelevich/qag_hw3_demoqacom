@@ -39,6 +39,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setLastName(lastName);
         registrationPage.setEmail(userEmail);
         registrationPage.setGenterWrapper(userGenter);
+        registrationPage.setDateOfBirth(userMonthDob, userYearDob);
         registrationPage.setUserNumber(userNumber);
         registrationPage.setSubjects(userSubjects);
         registrationPage.setHobbies(userHobbies);
@@ -55,8 +56,16 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
 
         /* TODO
-            check the file upload,
-             check the list of subjects */
+             check the file upload,
+             check the list of subjects
+             represent Modal Window as Selenide Collection
+              search alternatives for   userDayDobSelectLocator implementation
+              do not understand uploadPicture method alternative                                                      https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L84
+              do not understand how to implement stateLocator          $x("//div[text()='" + value + "']").click();     https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L96
+              negative test case - check the error message
+
+
+             */
 
     }
 
