@@ -69,14 +69,14 @@ static void setup() {
         $("#subjectsInput").setValue("Arts").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click(); //informative
         $("#uploadPicture").uploadFile(new File("src/test/java/resources/a_test_png_logo.png"));  //     $("#uploadPicture").uploadFromClasspath("");  // only type=file
-
         $("#currentAddress").setValue(currentAddress);
+
         $("#state").click();
-
         $("#stateCity-wrapper").$("#react-select-3-option-0").click(); //        $("#stateCity-wrapper").$(byText("NCR")).click(); // other way
-        $("#city").click();
 
+        $("#city").click();
         $("#city").$(byText("Delhi")).click(); //        $("#city").$("#react-select-4-option-0").click(); // other way
+
         $("#submit").click();
 
        //assertions
