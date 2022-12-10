@@ -3,14 +3,6 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.util.List;
-
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-
 /**
  * Page Object organisation
  *
@@ -32,7 +24,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
 
     @Test
-    void succsessfulRegistrationTest() {
+    void successfulRegistrationTest() {
 
         registrationPage.openPage();
         registrationPage.setFirstName(firstName);
