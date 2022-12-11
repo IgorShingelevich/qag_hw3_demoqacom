@@ -31,7 +31,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setLastName(lastName);
         registrationPage.setEmail(userEmail);
         registrationPage.setGenterWrapper(userGenter);
-        registrationPage.setDateOfBirth(userMonthDob, userYearDob);
+        registrationPage.setDateOfBirth(userDayDob, userMonthDob, userYearDob);
         registrationPage.setUserNumber(userNumber);
         registrationPage.setSubjects(userSubjects);
         registrationPage.setHobbies(userHobbies);
@@ -40,14 +40,11 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setState(userState);
         registrationPage.setCity(userCity);
         registrationPage.clickSubmitButton();
-
-
-        //assertions
         registrationPage.openModalWindow();
         registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, currentAddress, userState, userCity);
 
 
-        /* TODO
+        /** TODO
              check the file upload,
              check the list of subjects
              represent Modal Window as Selenide Collection
