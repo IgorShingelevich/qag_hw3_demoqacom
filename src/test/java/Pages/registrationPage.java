@@ -1,12 +1,12 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import tests.TestBase;
 
 import java.io.File;
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -14,63 +14,54 @@ public class RegistrationPage {
 
     private final String TITLE_TEXT = "Student Registration Form"; // TITLE_TEXT is constant
     private final String MODAL_TITLE = "Thanks for submitting the form"; // MODAL_TITLE is constant
-    private final int userDayDob = 22; // bad solution
+//    private final int userDayDob = 22; // bad solution
 
 
     //    String userState = "NCR";
     // 5. In RegistrationPage class set variables for locators.
     private SelenideElement
+
+            practiceFormWrapperLocator = $(".practice-form-wrapper"),
             firstNameInputLocator = $("#firstName"),                             // or $("[id='firstName']")
             lastNameInputLocator = $("#lastName"),
             userEmailInputLocator = $("#userEmail"),
             userNumberInputLocator = $("#userNumber"),
             userDateOfBirthContainerLocator = $("#dateOfBirthInput"),  // or $("[id='dateOfBirthInput']") or $(.react-datepicker__input-container)
-
-
-    userDayDobSelectLocator = $(".react-datepicker__day--0" + userDayDob + ":not(.react-datepicker__day--outside-month)"),  // !! how to set 30  as a variable inside the locator
             userMonthDobSelectLocator = $(".react-datepicker__month-select"),
             userYearDobSelectLocator = $(".react-datepicker__year-select"),
-
-    userGenterWrapperLocator = $("#genterWrapper"),
+            userGenterWrapperLocator = $("#genterWrapper"),
             subjectsInputLocator = $("#subjectsInput"),
             hobbiesWrapperLocator = $("#hobbiesWrapper"),
             uploadPictureLocator = $("#uploadPicture"),
             currentAddressInputLocator = $("#currentAddress"),
             stateContainerLocator = $("#state"),
-
-    stateDropdownNCRLocator = $("#stateCity-wrapper"),    // or $("#stateCity-wrapper").$("#react-select-3-option-0");  $("#stateCity-wrapper").$(byText(userState)  //  $("#stateCity-wrapper").$("#react-select-3-option-0")   $(byText("NCR"))
+            stateDropdownNCRLocator = $("#stateCity-wrapper"),    // or $("#stateCity-wrapper").$("#react-select-3-option-0");  $("#stateCity-wrapper").$(byText(userState)  //  $("#stateCity-wrapper").$("#react-select-3-option-0")   $(byText("NCR"))
             cityContainerLocator = $("#city"), // $("#city").$("#react-select-4-option-0")  $("#city").$(byText("Delhi"))
             submitButtonLocator = $("#submit"),
             modalTitleLocator = $(".modal-title"),
             tableLocator = $(".table-responsive");
 
-    //set method for Date of Birth
-    public void setDateOfBirth(String monthArg, String yearArg) {
+
+    public void setDateOfBirth(String dayArg, String monthArg, String yearArg) {
         userDateOfBirthContainerLocator.click();
         userMonthDobSelectLocator.selectOption(monthArg);
         userYearDobSelectLocator.selectOption(yearArg);
-        userDayDobSelectLocator.click();
-
+        $(".react-datepicker__day--0" + dayArg + ":not(.react-datepicker__day--outside-month)").click();
     }
 
-
-    /**
-     * $("label[for='gender-radio-1']").clickk(); //good
+    /** alternatives
+     * $("label[for='gender-radio-1']").click(); //good
      * $("#gender-radio-1").parent().click();  // not informative
      * $(byText("Other")).click();  //may cause problems with translation into other languages. Other - is widespread word
      */
 
-
-    // 2. Create inside  RegistrationPage class  a method for opening the page
     public void openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove();");
         executeJavaScript("$('footer').remove();");
-        $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));           //check that the page is open at all
+        practiceFormWrapperLocator.shouldHave(text(TITLE_TEXT));           //check that the page is open at all
     }
 
-
-    //6. In TestBase class set variables for all input fields
     public void setFirstName(String FirstNameArg) {                                            // bad decision to hardcode the value     public void setLastName(){$("#lastName").setValue("Shingelevich");}
         firstNameInputLocator.setValue(FirstNameArg);
     }
@@ -87,7 +78,7 @@ public class RegistrationPage {
         userNumberInputLocator.setValue(UserNumberArg);
     }
 
-    public void setGenterWrapper(String GenterArg) {                           //!!! I did not understand how to set the value of the radio button but it works
+    public void setGenterWrapper(String GenterArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
         userGenterWrapperLocator.$(byText(GenterArg)).click();
     }
 
@@ -98,7 +89,7 @@ public class RegistrationPage {
         }
     }
 
-    public void setHobbies(String HobbiesArg) {                           //!!! I did not understand how to set the value of the radio button but it works
+    public void setHobbies(String HobbiesArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
         hobbiesWrapperLocator.$(byText(HobbiesArg)).click();
     }
 
@@ -136,13 +127,11 @@ public class RegistrationPage {
         tableLocator.shouldHave(text(EmailArg));
         tableLocator.shouldHave(text(UserNumberArg));
         tableLocator.shouldHave(text(GenterArg));
-        ;
         tableLocator.shouldHave(text(HobbiesArg));
         tableLocator.shouldHave(text(CurrentAddressArg));
         tableLocator.shouldHave(text(StateArg));
         tableLocator.shouldHave(text(CityArg));
     }
-
 
 
 }

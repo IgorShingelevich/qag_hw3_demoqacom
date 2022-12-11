@@ -13,7 +13,7 @@ public class TestBase {
     String lastName = "Shingelevich";
     String userEmail = "shingelevich@gmail.com";
     String userNumber = "1234567890";
-//    public int userDayDob = 22;
+     String userDayDob = "22";
 
 
     String userMonthDob = "January";
