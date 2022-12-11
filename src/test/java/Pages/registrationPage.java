@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-
 import java.io.File;
 import java.util.List;
 
@@ -14,11 +13,7 @@ public class RegistrationPage {
 
     private final String TITLE_TEXT = "Student Registration Form"; // TITLE_TEXT is constant
     private final String MODAL_TITLE = "Thanks for submitting the form"; // MODAL_TITLE is constant
-//    private final int userDayDob = 22; // bad solution
 
-
-    //    String userState = "NCR";
-    // 5. In RegistrationPage class set variables for locators.
     private SelenideElement
 
             practiceFormWrapperLocator = $(".practice-form-wrapper"),
@@ -42,12 +37,7 @@ public class RegistrationPage {
             tableLocator = $(".table-responsive");
 
 
-    public void setDateOfBirth(String dayArg, String monthArg, String yearArg) {
-        userDateOfBirthContainerLocator.click();
-        userMonthDobSelectLocator.selectOption(monthArg);
-        userYearDobSelectLocator.selectOption(yearArg);
-        $(".react-datepicker__day--0" + dayArg + ":not(.react-datepicker__day--outside-month)").click();
-    }
+
 
     /** alternatives
      * $("label[for='gender-radio-1']").click(); //good
@@ -62,7 +52,7 @@ public class RegistrationPage {
         practiceFormWrapperLocator.shouldHave(text(TITLE_TEXT));           //check that the page is open at all
     }
 
-    public void setFirstName(String FirstNameArg) {                                            // bad decision to hardcode the value     public void setLastName(){$("#lastName").setValue("Shingelevich");}
+    public void setFirstName(String FirstNameArg) {                        // bad decision to hardcode the value     public void setLastName(){$("#lastName").setValue("Shingelevich");}
         firstNameInputLocator.setValue(FirstNameArg);
     }
 
@@ -80,6 +70,13 @@ public class RegistrationPage {
 
     public void setGenterWrapper(String GenterArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
         userGenterWrapperLocator.$(byText(GenterArg)).click();
+    }
+
+    public void setDateOfBirth(String dayArg, String monthArg, String yearArg) {
+        userDateOfBirthContainerLocator.click();
+        userMonthDobSelectLocator.selectOption(monthArg);
+        userYearDobSelectLocator.selectOption(yearArg);
+        $(".react-datepicker__day--0" + dayArg + ":not(.react-datepicker__day--outside-month)").click();
     }
 
     public void setSubjects(List<String> subjects) {
@@ -115,7 +112,6 @@ public class RegistrationPage {
         submitButtonLocator.click();
     }
 
-    //method for checking the data in the table
     public void openModalWindow() {
         modalTitleLocator.should(appear);
         modalTitleLocator.shouldHave(text(MODAL_TITLE));
