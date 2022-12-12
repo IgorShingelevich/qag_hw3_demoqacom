@@ -40,6 +40,21 @@ static void setup() {
         String userNumber = "1234567890";
         String currentAddress = "Moscow";
 
+          /* String firstName = "Igor";
+    String lastName = "Shingelevich";
+    String userEmail = "shingelevich@gmail.com";
+    String userNumber = "1234567890";
+     String userDayDob = "22";
+    String userMonthDob = "January";
+    String userYearDob = "1985";
+    String currentAddress = "Moscow";
+    String userGenter = "Other";
+    List<String> userSubjects = List.of("Maths", "Arts", "Chemistry");
+    String userPicture = "src/test/java/resources/a_test_png_logo.png";
+    String userHobbies = "Sports";
+    String userState = "NCR";
+    String userCity = "Delhi";*/
+
      open ("/automation-practice-form");
 
         //Configuration.browserSize = "0.5";
