@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static utils.RandomUtils.*;
+
 /** Page Object organisation *
  * @1. Create a class for RegistrationPage class (and extend it from TestBase class)
  * @2. Create a class for TestBase class and call it from RegistrationPage class. BeforeAll and AfterAll methods should be in TestBase class
@@ -43,11 +45,11 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
         firstName = "Igor";
         lastName = "Shingelevich";
-        userEmail = "shingelevich@gmail.com";
-        userNumber = "1234567890";
-        userDayDob = "22";
-        userMonthDob = "January";
-        userYearDob = "1985";
+        userEmail = actualTimeStampEmail(2);
+        userNumber = randomPhone("7", 9);
+        userDayDob = randomLongRange(1L, 31L).toString();
+        userMonthDob = randomMonth().toString();
+        userYearDob = randomLongRange(1950L, 2021L).toString();
         currentAddress = "Moscow";
         userGenter = "Other";
         userSubjectsList = List.of("Maths", "Arts", "Chemistry");
