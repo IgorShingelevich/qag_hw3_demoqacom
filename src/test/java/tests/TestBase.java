@@ -1,12 +1,9 @@
 package tests;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import pages.RegistrationPage;
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-
-import java.util.List;
+import pages.RegistrationPage;
 
 public class TestBase {
 
