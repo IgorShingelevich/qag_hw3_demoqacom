@@ -6,6 +6,7 @@ import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -16,7 +17,7 @@ public class RandomUtils {
         RandomUtils randomUtils = new RandomUtils();
 
         System.out.println(randomUtils.randomString(10));
-        System.out.println(actualTimeStampEmail(2));
+        System.out.println(randomUtils.actualTimeStampEmail(2));
         System.out.println(randomEmail2(10));
         System.out.println(randomLong(10));
         System.out.println(randomLongRange(1985L, 2023L));
@@ -33,6 +34,9 @@ public class RandomUtils {
         System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));
         System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, d MMMM")));
         System.out.println(randomDate85to23y());
+//        System.out.println(randomSubject()  + " " + randomSubject() + " " + randomSubject());
+
+
     }
 
     public static String randomString(int len) {
@@ -125,6 +129,31 @@ public class RandomUtils {
         Faker faker = new Faker();
         return faker.name().firstName();
     }*/
+
+        List<String> userSubjects = List.of("Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics");
+    // cycle method to get  random subject
+    public static String randomSubject() {
+        List<String> userSubjects = List.of("Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics");
+        int randomSubject = (int) (Math.random() * userSubjects.size());
+        return userSubjects.get(randomSubject);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**regex examples
      *  System.out.println(generatedString.matches("[a-zA-Z]+"));

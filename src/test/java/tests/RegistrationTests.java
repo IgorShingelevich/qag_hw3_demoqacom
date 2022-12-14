@@ -5,6 +5,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import java.io.File;
 
@@ -15,6 +16,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class RegistrationTests {
+
+    RegistrationPage registrationPage = new RegistrationPage();
     @BeforeAll
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com";  // baseUrl = "https://demoqa.com"
@@ -47,6 +50,7 @@ public class RegistrationTests {
     String userYearDob = "1985";
     String currentAddress = "Moscow";
     String userGenter = "Other";
+    userSubjects = {"Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics"};
     List<String> userSubjects = List.of("Maths", "Arts", "Chemistry");
     String userPicture = "src/test/java/resources/a_test_png_logo.png";
     String userHobbies = "Sports";
@@ -105,6 +109,7 @@ public class RegistrationTests {
 
 
     }
+    long newPrice = 1000L;
 
 
 }

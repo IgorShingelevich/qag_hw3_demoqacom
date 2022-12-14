@@ -1,8 +1,8 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+
 import java.io.File;
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
@@ -35,15 +35,6 @@ public class RegistrationPage {
             submitButtonLocator = $("#submit"),
             modalTitleLocator = $(".modal-title"),
             tableLocator = $(".table-responsive");
-
-
-
-
-    /** alternatives
-     * $("label[for='gender-radio-1']").click(); //good
-     * $("#gender-radio-1").parent().click();  // not informative
-     * $(byText("Other")).click();  //may cause problems with translation into other languages. Other - is widespread word
-     */
 
     public void openPage() {
         open("/automation-practice-form");
@@ -79,11 +70,9 @@ public class RegistrationPage {
         $(".react-datepicker__day--0" + dayArg + ":not(.react-datepicker__day--outside-month)").click();
     }
 
-    public void setSubjects(List<String> subjects) {
-        // set cycle for subjects
-        for (String subject : subjects) {
-            subjectsInputLocator.setValue(subject).pressEnter();
-        }
+    public void setSubjects(String randomSubjectListArg) {
+            subjectsInputLocator.setValue(randomSubjectListArg).pressEnter();
+
     }
 
     public void setHobbies(String HobbiesArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
@@ -117,11 +106,12 @@ public class RegistrationPage {
         modalTitleLocator.shouldHave(text(MODAL_TITLE));
     }
 
-    public void checkModalWindow(String FirstNameArg, String LastNameArg, String EmailArg, String UserNumberArg, String GenterArg, String HobbiesArg, String CurrentAddressArg, String StateArg, String CityArg) {
+    public void checkModalWindow(String FirstNameArg, String LastNameArg, String EmailArg, String UserNumberArg, String GenterArg, String HobbiesArg, String randomSubjectListArg, String CurrentAddressArg, String StateArg, String CityArg) {
         tableLocator.shouldHave(text(FirstNameArg));
         tableLocator.shouldHave(text(LastNameArg));
         tableLocator.shouldHave(text(EmailArg));
         tableLocator.shouldHave(text(UserNumberArg));
+        tableLocator.shouldHave(text(randomSubjectListArg));
         tableLocator.shouldHave(text(GenterArg));
         tableLocator.shouldHave(text(HobbiesArg));
         tableLocator.shouldHave(text(CurrentAddressArg));

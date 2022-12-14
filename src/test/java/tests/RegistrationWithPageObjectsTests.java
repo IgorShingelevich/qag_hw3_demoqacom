@@ -3,8 +3,6 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static utils.RandomUtils.*;
 
 /**
@@ -18,7 +16,6 @@ import static utils.RandomUtils.*;
  * @6. In RegistrationTest class then call the methods   openPage() from the RegistrationPage class - new RegistrationPage.openPage()
  * @7. In TestClass declare variables for the data that will be used in the test
  * @8. In Test method initialize the variables with the data
- *
  */
 public class RegistrationWithPageObjectsTests extends TestBase {
 
@@ -35,10 +32,10 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 currentAddress,
                 userGenter,
                 userPicture,
+                userSubjectsList,
                 userHobbies,
                 userState,
                 userCity;
-        List<String> userSubjectsList;
 
 
         firstName = "Igor";
@@ -50,7 +47,9 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         userYearDob = randomLongRange(1950L, 2021L).toString();
         currentAddress = "Moscow";
         userGenter = "Other";
-        userSubjectsList = List.of("Maths", "Arts", "Chemistry");
+//        userSubjectsList = List.of( "Maths", "Arts", "Chemistry");
+//        userSubjectsList = randomSubject().toString();
+        userSubjectsList = randomSubject().toString();
         userPicture = "src/test/java/resources/a_test_png_logo.png";
         userHobbies = "Sports";
         userState = "NCR";
@@ -71,10 +70,11 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setCity(userCity);
         registrationPage.clickSubmitButton();
         registrationPage.openModalWindow();
-        registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, currentAddress, userState, userCity);
+        registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubjectsList, currentAddress, userState, userCity);
 
     }
  /* TODO
+              randomSubject to userSubjectsRandomList = List.of( randomSubject(), randomSubject(), randomSubject());
              import Java Faker for Faker faker = new Faker()
              listOfSubjectsList = List.of("Maths", "Arts", "Chemistry") make random list
              check the file upload,
