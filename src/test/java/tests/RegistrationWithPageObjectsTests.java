@@ -74,7 +74,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
     }
  /* TODO
-              randomSubject to userSubjectsRandomList = List.of( randomSubject(), randomSubject(), randomSubject());
+                 to userSubjectsRandomList = List.of( randomSubject(), randomSubject(), randomSubject());
              import Java Faker for Faker faker = new Faker()
              listOfSubjectsList = List.of("Maths", "Arts", "Chemistry") make random list
              check the file upload,
