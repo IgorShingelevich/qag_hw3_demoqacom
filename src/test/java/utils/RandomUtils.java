@@ -19,18 +19,25 @@ public class RandomUtils {
 
         System.out.println("randomString " + randomUtils.randomString(10));
         System.out.println("randomString2 " + randomUtils.randomString2(10));
+        System.out.println("randomItemFromArrayRange " + randomUtils.randomItemFromArrayRange(0, 4));
+        System.out.println("randomItemFromAllArray " + randomItemFromAllArray(someArrayItems));
         System.out.println("actualTimeStampEmail " + randomUtils.actualTimeStampEmail(2));
-        System.out.println("randomEmail " + randomEmail(10));
+        System.out.println("randomEmail.toLowerCase() " + randomEmail(10));
+        System.out.println("randomEmailRndDomainSetLen " + randomEmailRndDomainSetLen( 6));
         System.out.println("randomIntRange " + randomIntRange(10, 20));
         System.out.println("randomLong " + randomLong(10));
         System.out.println("randomLongRange " + randomLongRange(1985L, 2023L));
+        System.out.println(randomLongRange(10000L, 1000000l));
+        //
+
+
         System.out.println("randomPhone " + randomPhone("+7", 10));
         System.out.println("generatedString " + generatedString);
         System.out.println(randomMonth());
         System.out.println(randomDayOfWeek());
-        System.out.println(getActualDate());
+        System.out.println("getActualDate// " + getActualDate());
         System.out.println(LocalDate.now());
-        System.out.println(getActualTime());// similar to LocalDate.now()
+        System.out.println("getActualTime " + getActualTime());// similar to LocalDate.now()
         System.out.println(LocalTime.now() + " " + LocalDate.now());
         System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -62,7 +69,7 @@ public class RandomUtils {
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++)
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
-        return sb.toString() + "!";
+        return sb.toString() + "_some_text";
     }
 
     static String generatedString = RandomStringUtils.random(20, true, true);
@@ -86,8 +93,25 @@ public class RandomUtils {
         return random.nextInt(max - min + 1) + min;
     }
 
+    public static String[] someArrayItems = {"a","b","c","d","e"};
+    public static String randomItemFromArrayRange (int min, int max){
+        int randomIndex = (int) (Math.random() * (max - min + 1) + min);
+        return someArrayItems[randomIndex];
+    }
+
+    public static String randomItemFromAllArray (String[] arrayNameArg) {
+        int randomIndex = randomIntRange(0, arrayNameArg.length );
+        return arrayNameArg[randomIndex];
+    }
+
     public static String randomEmail(int len) {// to lower case
         return randomString2(len).toLowerCase() + "@some.com";
+    }
+
+    public static String randomEmailRndDomainSetLen (int lenArg){
+        String [] someDomainArray = {"hotmail.com", "rambler.ru", "gmail.com", "mail.ru", "yahoo.com", "aol.com", "msn.com" };
+        int randomIndex = randomIntRange(0, someDomainArray.length );
+        return "test_mail_" + LocalDate.now() + "_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH_mm")) + randomString(lenArg).toLowerCase() + "@" + someDomainArray[randomIndex];
     }
 
     public static String actualTimeStampEmail(int len) {
@@ -97,14 +121,14 @@ public class RandomUtils {
 
 
     public static String randomPhone(String countryCode, int lenArg) {
-        return countryCode + randomLong(lenArg);
+        return countryCode + randomLong(lenArg).toString();  //why  not toString()
     }
 
 
     public static String randomMonth() {
         String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int randomMonth = (int) (Math.random() * month.length);
-        return month[randomMonth];
+        return month[randomMonth].toString();
     }
 
     public static String randomDayOfWeek() {
@@ -115,13 +139,13 @@ public class RandomUtils {
 
     public static String getActualDate() {
         LocalDate localDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
         return localDate.format(formatter);
     }
 
     public static String getActualTime() {
         LocalTime localTime = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH_mm"); //("HH:mm"), ("HH:mm:ss"), ("HH:mm:ss.SSS"), ("HH:mm:ss.SSSSSS"), ("HH:mm:ss.SSSSSSSSS")
         return localTime.format(formatter);
     }
 
@@ -149,27 +173,33 @@ public class RandomUtils {
         return faker.name().firstName();
     }*/
 
+    // simple randomListItem
+
+
+
+
+
     /* examples of using List, Set, Map, HashMap */
 
     public static String randomSubject() {  // variable in the method
         List<String> userSubjects = List.of("Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics");
         int randomSubject = (int) (Math.random() * userSubjects.size());
-        return userSubjects.get(randomSubject);
+        return userSubjects.get(randomSubject).toString();
     }
 
    public static String [] userSubjectsArray = {"Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics"};
-    public static String randomSubjectArray() { // variable is outside the method
+    public static String randomSubjectArray() {
         int randomSubject = (int) (Math.random() * userSubjectsArray.length);
         return userSubjectsArray[randomSubject];
     }
 
-    public static String randomSubjectSet() { // variable is outside the method
+    public static String randomSubjectSet() {
         Set<String> userSubjectsSet = new HashSet<>(Arrays.asList(userSubjectsArray));
         int randomSubject = (int) (Math.random() * userSubjectsSet.size());
         return userSubjectsSet.toArray()[randomSubject].toString();
     }
 
-    public static String randomSubjectMap() { // variable is outside the method
+    public static String randomSubjectMap() {
         Map<Integer, String> userSubjectsMap = new HashMap<>();
         for (int i = 0; i < userSubjectsArray.length; i++) {
             userSubjectsMap.put(i, userSubjectsArray[i]);
@@ -177,6 +207,8 @@ public class RandomUtils {
         int randomSubject = (int) (Math.random() * userSubjectsMap.size());
         return userSubjectsMap.get(randomSubject);
     }
+
+
 
 
 

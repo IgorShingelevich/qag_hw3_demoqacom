@@ -32,7 +32,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 currentAddress,
                 userGenter,
                 userPicture,
-                userSubjectsList,
+                userSubject,
                 userHobbies,
                 userState,
                 userCity;
@@ -40,16 +40,14 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
         firstName = "Igor";
         lastName = "Shingelevich";
-        userEmail = actualTimeStampEmail(2).toString();
-        userNumber = randomPhone("7", 9).toString();
+        userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
+        userNumber = randomPhone("7", 9);
         userDayDob = randomLongRange(1L, 31L).toString();
-        userMonthDob = randomMonth().toString();
+        userMonthDob = randomMonth().toString();                            // why .toString()?
         userYearDob = randomLongRange(1950L, 2021L).toString();
         currentAddress = "Moscow";
         userGenter = "Other";
-//        userSubjectsList = List.of( "Maths", "Arts", "Chemistry");
-//        userSubjectsList = randomSubject().toString();
-        userSubjectsList = randomSubject().toString();
+        userSubject = randomItemFromAllArray(userSubjectsArray);
         userPicture = "src/test/java/resources/a_test_png_logo.png";
         userHobbies = "Sports";
         userState = "NCR";
@@ -62,7 +60,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setGenterWrapper(userGenter);
         registrationPage.setDateOfBirth(userDayDob, userMonthDob, userYearDob);
         registrationPage.setUserNumber(userNumber);
-        registrationPage.setSubjects(userSubjectsList);
+        registrationPage.setSubject(userSubject);
         registrationPage.setHobbies(userHobbies);
         registrationPage.uploadPicture(userPicture);
         registrationPage.setCurrentAddress(currentAddress);
@@ -70,15 +68,15 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setCity(userCity);
         registrationPage.clickSubmitButton();
         registrationPage.openModalWindow();
-        registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubjectsList, currentAddress, userState, userCity);
+        registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
 
     }
  /* TODO
-                 to userSubjectsRandomList = List.of( randomSubject(), randomSubject(), randomSubject());
+              why .toString() - in variables
+              setSubject(userSubject) to multiple random subjects in one field from the array
              import Java Faker for Faker faker = new Faker()
-             listOfSubjectsList = List.of("Maths", "Arts", "Chemistry") make random list
-             check the file upload,
-             check the list of subjects
+              the file upload -  set rnd from folder
+             reg ex apply ("(\\d{3})(?=\\d)", "$1 ").replaceAll(" ", "-")) for phone number using  randomLongRange(10000L, 1000000l)) .toString()
              represent Check Modal Window as Selenide Collection for separated rows
               search alternatives for   userDayDobSelectLocator implementation
               do not understand uploadPicture method alternative                                                      https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L84
