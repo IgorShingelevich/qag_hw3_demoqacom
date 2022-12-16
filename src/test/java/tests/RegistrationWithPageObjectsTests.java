@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static tests.TestData.*;
 import static utils.RandomUtils.*;
+import static utils.RandomUtils.randomItemFromAllArray;
 
 /**
  * Page Object organisation *
@@ -27,9 +28,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @Test
     void successfulRegistrationTest() {
 
-
-
-
         firstName = "Igor";
         lastName = "Shingelevich";
         userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
@@ -38,10 +36,10 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
         userYearDob = randomDobYear().toString();
         currentAddress = "Moscow";
-        userGenter = "Other";
-        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods?
+        userGenter = randomItemFromAllArray(userGenterArray).toString();  // why .toString()?   error - randomItemFromAllArray
+        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
         userPicture = "src/test/java/resources/a_test_png_logo.png";
-        userHobbies = "Sports";
+        userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
         userState = "NCR";
         userCity = "Delhi";
 
@@ -64,6 +62,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
     }
  /* TODO
+              error with randomItemFromAllArray    ArrayIndexOutOfBoundsException  https://rollbar.com/blog/how-to-fix-the-array-index-out-of-bounds-excepiton-in-java/
               DONE how to use randomDob() method to split the date of birth into 3 variables?                 utils/RandomUtils.java:157
               how to pass min year to randomDobYear() method?                                                 utils/RandomUtils.java:179
               How to parse String and send multiple values to constructor for parsing randomDob().toString     https://stackoverflow.com/questions/41498163/how-to-parse-string-and-send-multiple-values-to-constructor

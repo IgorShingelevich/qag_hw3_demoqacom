@@ -9,13 +9,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static tests.TestData.*;
+
 
 public class RandomUtils {
 
     public static void main(String[] args) {
 
         RandomUtils randomUtils = new RandomUtils();
-
 
         System.out.println("randomString " + randomUtils.randomString(10));
         System.out.println("randomString2 " + randomUtils.randomString2(10));
@@ -28,9 +29,6 @@ public class RandomUtils {
         System.out.println("randomLong " + randomLong(10));
         System.out.println("randomLongRange " + randomLongRange(1985L, 2023L));
         System.out.println(randomLongRange(10000L, 1000000l));
-        //
-
-
         System.out.println("randomPhone " + randomPhone("+7", 10));
         System.out.println("generatedString " + generatedString);
         System.out.println(randomMonth());
@@ -54,12 +52,6 @@ public class RandomUtils {
         System.out.println(("randomSubjectArray " + randomSubjectArray()));
         System.out.println(("randomSubjectSet " + randomSubjectSet()));
         System.out.println(("randomSubjectMap " + randomSubjectMap()));
-
-
-
-//        System.out.println(randomSubject()  + " " + randomSubject() + " " + randomSubject());
-
-
     }
 
     public static String randomString(int len) {
@@ -103,8 +95,12 @@ public class RandomUtils {
         return someArrayItems[randomIndex];
     }
 
+    /*public static String randomItemFromAllArrayOLD (String[] arrayNameArg) {
+        int randomIndex = randomIntRange(0, arrayNameArg.length ); // error ArrayIndexOutOfBoundsException,  try to set - 1
+        return arrayNameArg[randomIndex];
+    } */
     public static String randomItemFromAllArray (String[] arrayNameArg) {
-        int randomIndex = randomIntRange(0, arrayNameArg.length );
+        int randomIndex = (int) (Math.random() * (arrayNameArg.length )); // (int) (Math.random() * (arrayNameArg.length - 1));
         return arrayNameArg[randomIndex];
     }
 
@@ -113,9 +109,8 @@ public class RandomUtils {
     }
 
     public static String randomEmailRndDomainSetLen (int lenArg){
-        String [] someDomainArray = {"hotmail.com", "rambler.ru", "gmail.com", "mail.ru", "yahoo.com", "aol.com", "msn.com" };
-        int randomIndex = randomIntRange(0, someDomainArray.length );
-        return "test_mail_" + LocalDate.now() + "_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH_mm")) + randomString(lenArg).toLowerCase() + "@" + someDomainArray[randomIndex];
+        int randomIndex = randomIntRange(0, randomDomainArray.length );
+        return "test_mail_" + LocalDate.now() + "_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH_mm")) + randomString(lenArg).toLowerCase() + "@" + randomDomainArray[randomIndex];
     }
 
     public static String actualTimeStampEmail(int len) {
@@ -130,7 +125,6 @@ public class RandomUtils {
 
 
     public static String randomMonth() {
-        String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int randomMonth = (int) (Math.random() * month.length);
         return month[randomMonth].toString();
     }
@@ -153,7 +147,6 @@ public class RandomUtils {
         return localTime.format(formatter);
     }
 
-    //range from random past year till actual  year
     public static String randomDob() {
         LocalDate localDate = LocalDate.now(); // ("dd/MM/yyyy")
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy").withLocale(Locale.ENGLISH);  //https://stackoverflow.com/questions/51843760/how-can-i-change-the-language-of-the-months-provided-by-localdate
@@ -188,8 +181,6 @@ public class RandomUtils {
         String[] dob = randomDob().split("/");
         return dob[2];
     }*/
-    // pass min year to randomDobYear() method
-
 
 
     public static String getActualDayOfWeekAndMonth() {
@@ -197,13 +188,6 @@ public class RandomUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d MMMM");
         return localDate.format(formatter);
     }
-
-    /* public static String getActualDateTime(){
-        LocalDate localDate = LocalDate.now();
-        LocalTime localTime = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
-        return localDate.format(formatter) + " " + localTime.format(formatter);
-    }*/
 
     public static String randomDate85to23y() {
         LocalDate localDate = LocalDate.of(Math.toIntExact((Long) randomLongRange(1985L, 2023L)), Math.toIntExact((Long) randomLongRange(1L, 12L)), Math.toIntExact((Long) randomLongRange(1L, 28L)));
@@ -216,21 +200,13 @@ public class RandomUtils {
         return faker.name().firstName();
     }*/
 
-    // simple randomListItem
-
-
-
-
-
     /* examples of using List, Set, Map, HashMap */
 
-    public static String randomSubject() {  // variable in the method
-        List<String> userSubjects = List.of("Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics");
+    public static String randomSubject() {
         int randomSubject = (int) (Math.random() * userSubjects.size());
         return userSubjects.get(randomSubject).toString();
     }
 
-   public static String [] userSubjectsArray = {"Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics"};
     public static String randomSubjectArray() {
         int randomSubject = (int) (Math.random() * userSubjectsArray.length);
         return userSubjectsArray[randomSubject];
@@ -251,31 +227,11 @@ public class RandomUtils {
         return userSubjectsMap.get(randomSubject);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**regex examples
      *  System.out.println(generatedString.matches("[a-zA-Z]+"));
      System.out.println(generatedString.matches("[a-z]+"));
      System.out.println(randomLong(10000L).replaceAll("(\\d{3})(?=\\d)", "$1 "));
      System.out.println(randomLong(10000L, 1000000l).replaceAll("(\\d{3})(?=\\d)", "$1 ").replaceAll(" ", "-"));*/
-
 }
 
 
