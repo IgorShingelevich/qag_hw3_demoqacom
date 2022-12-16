@@ -1,85 +1,52 @@
 package tests;
 
+import java.util.List;
+
 public class TestData {
 
-/*@BeforeEach
-        void getFirstName (){
-            firstName = getNewValidFirstName();
-            lastName = getNewValidLastName();
-            userEmail = getNewValidUserEmail();
-            userNumber = getNewValidUserNumber();
-            userDayDob = getNewValidUserDayDob();
-            userMonthDob = getNewValidUserMonthDob();
-            userYearDob = getNewValidUserYearDob();
-            currentAddress = getNewValidCurrentAddress();
-            userGenter = getNewValidUserGenter();
-            userSubjectsList = getNewValidUserSubjects();
-            userPicture = getNewValidUserPicture();
-            userHobbies = getNewValidUserHobbies();
-            userState = getNewValidUserState();
-            userCity = getNewValidUserCity();
-        }*/
+    public static String firstName,
+            lastName,
+            userEmail,
+            userNumber,
+            userDayDob,
+            userMonthDob,
+            userYearDob,
+            currentAddress,
+            userGenter,
+            userPicture,
+            userSubject,
+            userHobbies,
+            userState,
+            userCity;
 
-        /*String getNewValidFirstName() {
-            return "Igor";
-        }
-        String getNewValidLastName() {
-            return "Shingelevich";
-        }
-        String getNewValidUserEmail() {
-            return "shingelevich@gmail.com";
-        }
-        String getNewValidUserNumber() {
-            return "1234567890";
-        }
-        String getNewValidUserDayDob() {
-            return "22";
-        }
-        String getNewValidUserMonthDob() {
-            return "January";
-        }
-        String getNewValidUserYearDob() {
-            return "1985";
-        }
-        String getNewValidCurrentAddress() {
-            return "Moscow";
-        }
-        String getNewValidUserGenter() {
-            return "Other";
-        }
-        List<String> getNewValidUserSubjects() {
-            return List.of("Maths", "Arts", "Chemistry");
-        }
-        String getNewValidUserPicture() {
-            return "src/test/java/resources/a_test_png_logo.png";
-        }
-        String getNewValidUserHobbies() {
-            return "Sports";
-        }
-        String getNewValidUserState() {
-            return "NCR";
-        }
-        String getNewValidUserCity() {
-            return "Delhi";
-        }*/
 
-      /*getUserCredentials()
-    @BeforeEach
-    void getUserCredentials() {
-        firstName = getNewUserCredentials().getFirstName();
-        lastName = getNewUserCredentials().getLastName();
-        userEmail = getNewUserCredentials().getUserEmail();
-        userNumber = getNewUserCredentials().getUserNumber();
-        userDayDob = getNewUserCredentials().getUserDayDob();
-        userMonthDob = getNewUserCredentials().getUserMonthDob();
-        userYearDob = getNewUserCredentials().getUserYearDob();
-        currentAddress = getNewUserCredentials().getCurrentAddress();
-        userGenter = getNewUserCredentials().getUserGenter();
-        userSubjectsList = getNewUserCredentials().getUserSubjects();
-        userPicture = getNewUserCredentials().getUserPicture();
-        userHobbies = getNewUserCredentials().getUserHobbies();
-        userState = getNewUserCredentials().getUserState();
-        userCity = getNewUserCredentials().getUserCity();
-            }*/
 
-}
+    public static String [] randomDomainArray = {"hotmail.com", "rambler.ru", "gmail.com", "mail.ru", "yahoo.com", "aol.com", "msn.com" };
+    public static String [] userGenterArray = { "Male", "Female", "Other" };
+   public static String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    public static List<String> userSubjects = List.of("Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics");
+    public static String [] userSubjectsArray = {"Math", "Physics", "Chemistry", "Biology", "English", "History", "Arts",  "Economics",   "Computer Science", "Commerce", "Accounting", "Civics"};
+public static String [] userHobbiesArray = {"Sports", "Reading", "Music"};
+public static String [] userStateArray = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+public static String [] NCRArray = {"Delhi", "Noida", "Gurgaon"};
+public static String [] UttarPradeshArray = {"Agra", "Lucknow", "Merrut"};
+public static String [] HaryanaArray = {"Karnal", "Panipat"};
+public static String [] RajasthanArray = {"Jaipur", "Jaiselmer"};public static String [][] userStateAndCityArray = {NCRArray, UttarPradeshArray, HaryanaArray, RajasthanArray};
+
+
+
+
+
+
+
+
+ }
+
+
+
+
+
+
+
+
+

@@ -3,40 +3,30 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import static tests.TestData.*;
 import static utils.RandomUtils.*;
+import static utils.RandomUtils.randomItemFromAllArray;
 
 /**
  * Page Object organisation *
  *
- * @1. Create a class for RegistrationPage class (and extend it from TestBase class)
- * @2. Create a class for TestBase class and call it from RegistrationPage class. BeforeAll and AfterAll methods should be in TestBase class
- * @3. Create a class for RegistrationWithPageObjectsTests class
- * @4. In RegistrationPage class create SelenideElement for all the locators.  For example: private SelenideElement firstNameInputLocator =  $("#firstName");
- * @5. In RegistrationPage class create  a methods for interacting with the page -From  openPage() to submit()
- * @6. In RegistrationTest class then call the methods   openPage() from the RegistrationPage class - new RegistrationPage.openPage()
- * @7. In TestClass declare variables for the data that will be used in the test
- * @8. In Test method initialize the variables with the data
+ * @1.PageClass Create a class for RegistrationPage class (and extend it from TestBase class)
+ * @2.TestBase Create a class for TestBase class and call it from RegistrationPage class. BeforeAll and AfterAll methods should be in TestBase class
+ * @3.TestClass Create a class for RegistrationWithPageObjectsTests class
+ * @4.PageClass_SelenideElement In RegistrationPage class create SelenideElement for all the locators.  For example: private SelenideElement firstNameInputLocator =  $("#firstName");
+ * @5.pageMethods In RegistrationPage class create  a set of pageMethods -From  openPage() to submit()
+ * @6.testMethods In RegistrationTest class then call the methods   openPage() from the RegistrationPage class in testMethods- new RegistrationPage.openPage()
+ * @7.utils.RandomUtils Create a class for RandomUtils class and call it from RegistrationPage class.
+ * @8.TestData_declare In TestData declare the variables for the data that will be used in the test
+ * @9.TestClass_initialize In TestClass initialize the variables with the data from TestData class inside the test method
+ *
  */
 public class RegistrationWithPageObjectsTests extends TestBase {
 
+
+
     @Test
     void successfulRegistrationTest() {
-
-        String firstName,
-                lastName,
-                userEmail,
-                userNumber,
-                userDayDob,
-                userMonthDob,
-                userYearDob,
-                currentAddress,
-                userGenter,
-                userPicture,
-                userSubject,
-                userHobbies,
-                userState,
-                userCity;
-
 
         firstName = "Igor";
         lastName = "Shingelevich";
@@ -46,12 +36,12 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
         userYearDob = randomDobYear().toString();
         currentAddress = "Moscow";
-        userGenter = "Other";
-        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods?
+        userGenter = randomItemFromAllArray(userGenterArray).toString();  // why .toString()?   error - randomItemFromAllArray
+        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
         userPicture = "src/test/java/resources/a_test_png_logo.png";
-        userHobbies = "Sports";
-        userState = "NCR";
-        userCity = "Delhi";
+        userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
+       // userState = "NCR";
+       // userCity = "Delhi";
 
         registrationPage.openPage();
         registrationPage.setFirstName(firstName);
@@ -72,8 +62,8 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
     }
  /* TODO
-              DONE how to use randomDob() method to split the date of birth into 3 variables?                 utils/RandomUtils.java:157
-              how to pass min year to randomDobYear() method?                                                 utils/RandomUtils.java:179
+              difference between utils.RandomUtils.randomItemFromAllArray and _OLD_ method that cause the error with randomItemFromAllArray    ArrayIndexOutOfBoundsException  https://rollbar.com/blog/how-to-fix-the-array-index-out-of-bounds-excepiton-in-java/
+              how to pass min year to randomDobYear() method?       utils.RandomUtils.randomDob
               How to parse String and send multiple values to constructor for parsing randomDob().toString     https://stackoverflow.com/questions/41498163/how-to-parse-string-and-send-multiple-values-to-constructor
               why .toString() - in variables                                                         utils.RandomUtils.randomEmailRndDomainSetLen
               this. and static
