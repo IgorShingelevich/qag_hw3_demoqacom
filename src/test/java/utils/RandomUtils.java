@@ -1,6 +1,7 @@
 package utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import tests.TestData;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -8,8 +9,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static tests.TestData.*;
 
 
 public class RandomUtils {
@@ -95,7 +94,8 @@ public class RandomUtils {
         return someArrayItems[randomIndex];
     }
 
-    /*public static String randomItemFromAllArrayOLD (String[] arrayNameArg) {
+    /* cause  the error: java.lang.ArrayIndexOutOfBoundsException
+    public static String randomItemFromAllArrayOLD (String[] arrayNameArg) {
         int randomIndex = randomIntRange(0, arrayNameArg.length ); // error ArrayIndexOutOfBoundsException,  try to set - 1
         return arrayNameArg[randomIndex];
     } */
@@ -109,8 +109,8 @@ public class RandomUtils {
     }
 
     public static String randomEmailRndDomainSetLen (int lenArg){
-        int randomIndex = randomIntRange(0, randomDomainArray.length );
-        return "test_mail_" + LocalDate.now() + "_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH_mm")) + randomString(lenArg).toLowerCase() + "@" + randomDomainArray[randomIndex];
+        int randomIndex = randomIntRange(0, TestData.randomDomainArray.length );
+        return "test_mail_" + LocalDate.now() + "_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH_mm")) + randomString(lenArg).toLowerCase() + "@" + TestData.randomDomainArray[randomIndex];
     }
 
     public static String actualTimeStampEmail(int len) {
@@ -125,8 +125,8 @@ public class RandomUtils {
 
 
     public static String randomMonth() {
-        int randomMonth = (int) (Math.random() * month.length);
-        return month[randomMonth].toString();
+        int randomMonth = (int) (Math.random() * TestData.month.length);
+        return TestData.month[randomMonth].toString();
     }
 
     public static String randomDayOfWeek() {
@@ -137,7 +137,7 @@ public class RandomUtils {
 
     public static String getActualDate() {
         LocalDate localDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");  // https://stackoverflow.com/questions/28177370/how-to-format-localdate-to-string
         return localDate.format(formatter);
     }
 
@@ -169,7 +169,8 @@ public class RandomUtils {
         return dob[2];
     }
 
-   /* public static String randomDobYear2(int minYear) {
+   /* int minYear
+   public static String randomDobYear2(int minYear) {
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy").withLocale(Locale.ENGLISH);
         int randomYear = (int) (Math.random() * (localDate.getYear() - minYear + 1) + minYear);
@@ -177,7 +178,7 @@ public class RandomUtils {
         int randomDay = (int) (Math.random() * 28 + 1);
         return LocalDate.of(randomYear, randomMonth, randomDay).format(formatter).toString();
     }
-    public static String randomDobYear2() {
+    public static String randomDobYear2(int minYear) {
         String[] dob = randomDob().split("/");
         return dob[2];
     }*/
@@ -203,29 +204,51 @@ public class RandomUtils {
     /* examples of using List, Set, Map, HashMap */
 
     public static String randomSubject() {
-        int randomSubject = (int) (Math.random() * userSubjects.size());
-        return userSubjects.get(randomSubject).toString();
+        int randomSubject = (int) (Math.random() * TestData.userSubjects.size());
+        return TestData.userSubjects.get(randomSubject).toString();
     }
 
     public static String randomSubjectArray() {
-        int randomSubject = (int) (Math.random() * userSubjectsArray.length);
-        return userSubjectsArray[randomSubject];
+        int randomSubject = (int) (Math.random() * TestData.userSubjectsArray.length);
+        return TestData.userSubjectsArray[randomSubject];
     }
 
     public static String randomSubjectSet() {
-        Set<String> userSubjectsSet = new HashSet<>(Arrays.asList(userSubjectsArray));
+        Set<String> userSubjectsSet = new HashSet<>(Arrays.asList(TestData.userSubjectsArray));
         int randomSubject = (int) (Math.random() * userSubjectsSet.size());
         return userSubjectsSet.toArray()[randomSubject].toString();
     }
 
     public static String randomSubjectMap() {
         Map<Integer, String> userSubjectsMap = new HashMap<>();
-        for (int i = 0; i < userSubjectsArray.length; i++) {
-            userSubjectsMap.put(i, userSubjectsArray[i]);
+        for (int i = 0; i < TestData.userSubjectsArray.length; i++) {
+            userSubjectsMap.put(i, TestData.userSubjectsArray[i]);
         }
         int randomSubject = (int) (Math.random() * userSubjectsMap.size());
         return userSubjectsMap.get(randomSubject);
     }
+   /* public static String setRandomCityFromStateArray() {
+        for (int i = 0; i < userStateAndCityArray.length; i++) {
+            for (int j = 0; j < userStateAndCityArray[i].length; j++) {
+                userCity = userStateAndCityArray[i][j];
+                userState = userStateArray[i];
+            }
+        }
+        return userState + ", " + userCity;
+    }*/
+
+
+/*   public static String setRandomCityFromStateArray() {
+        int randomState = (int) (Math.random() * userStateAndCityArray.length);
+        int randomCity = (int) (Math.random() * userStateAndCityArray[randomState].length);
+        return userStateAndCityArray[randomState][randomCity];
+    }*/
+
+
+
+
+
+
 
     /**regex examples
      *  System.out.println(generatedString.matches("[a-zA-Z]+"));
@@ -233,6 +256,3 @@ public class RandomUtils {
      System.out.println(randomLong(10000L).replaceAll("(\\d{3})(?=\\d)", "$1 "));
      System.out.println(randomLong(10000L, 1000000l).replaceAll("(\\d{3})(?=\\d)", "$1 ").replaceAll(" ", "-"));*/
 }
-
-
-

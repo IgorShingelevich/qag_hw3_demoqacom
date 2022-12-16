@@ -19,9 +19,7 @@ public class TestData {
             userState,
             userCity;
 
-   /* public static String getFirstName() {
-        return firstName;
-    }*/
+
 
     public static String [] randomDomainArray = {"hotmail.com", "rambler.ru", "gmail.com", "mail.ru", "yahoo.com", "aol.com", "msn.com" };
     public static String [] userGenterArray = { "Male", "Female", "Other" };
@@ -33,9 +31,19 @@ public static String [] userStateArray = {"NCR", "Uttar Pradesh", "Haryana", "Ra
 public static String [] NCRArray = {"Delhi", "Noida", "Gurgaon"};
 public static String [] UttarPradeshArray = {"Agra", "Lucknow", "Merrut"};
 public static String [] HaryanaArray = {"Karnal", "Panipat"};
-public static String [] RajasthanArray = {"Jaipur", "Jaiselmer"};
+public static String [] RajasthanArray = {"Jaipur", "Jaiselmer"};public static String [][] userStateAndCityArray = {NCRArray, UttarPradeshArray, HaryanaArray, RajasthanArray};
 
-}
+
+
+
+
+
+
+
+ }
+
+
+
 
 
 
