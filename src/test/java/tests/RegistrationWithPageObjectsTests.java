@@ -2,10 +2,10 @@ package tests;
 
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static tests.TestData.*;
 import static utils.RandomUtils.*;
-import static utils.RandomUtils.randomItemFromAllArray;
 
 /**
  * Page Object organisation *
@@ -22,6 +22,8 @@ import static utils.RandomUtils.randomItemFromAllArray;
  *
  */
 public class RegistrationWithPageObjectsTests extends TestBase {
+
+    pages.RegistrationPage registrationPage = new RegistrationPage();
 
 
 

@@ -1,5 +1,6 @@
 package utils;
 
+import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 import tests.TestData;
 
@@ -51,6 +52,13 @@ public class RandomUtils {
         System.out.println(("randomSubjectArray " + randomSubjectArray()));
         System.out.println(("randomSubjectSet " + randomSubjectSet()));
         System.out.println(("randomSubjectMap " + randomSubjectMap()));
+        System.out.println(("getFirstName " + getFakerFirstName()));
+        System.out.println(("getMiddleName " + getFakerMiddleName()));
+        System.out.println(("getLastName " + getFakerLastName()));
+        System.out.println(("getFullName " + getFullName()));
+        System.out.println(("getFakerRelatedFirstName " + getFakerRelatedFirstName()));
+        System.out.println(("getFakerRelatedMiddleName " + getFakerRelatedMiddleName()));
+        System.out.println(("getFakerRelatedLastName " + getFakerRelatedLastName()));
     }
 
     public static String randomString(int len) {
@@ -196,11 +204,6 @@ public class RandomUtils {
         return localDate.format(formatter);
     }
 
-   /* public static String getFirstName(){
-        Faker faker = new Faker();
-        return faker.name().firstName();
-    }*/
-
     /* examples of using List, Set, Map, HashMap */
 
     public static String randomSubject() {
@@ -243,6 +246,37 @@ public class RandomUtils {
         int randomCity = (int) (Math.random() * userStateAndCityArray[randomState].length);
         return userStateAndCityArray[randomState][randomCity];
     }*/
+
+     public static String getFakerFirstName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().firstName();
+    }
+
+    public static String getFakerMiddleName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().firstName();
+    }
+    public static String getFakerLastName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().lastName();
+    }
+
+    public static String getFullName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().fullName();
+    }
+    public static String getFakerRelatedFirstName() {
+        String[] dob = getFullName().split(" ");
+        return dob[0];
+    }
+    public static String getFakerRelatedMiddleName() {
+        String[] dob = getFullName().split(" ");
+        return dob[1];
+    }
+    public static String getFakerRelatedLastName() {
+        String[] dob = getFullName().split(" ");
+        return dob[2];
+    }
 
 
 
