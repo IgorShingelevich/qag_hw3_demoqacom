@@ -41,13 +41,13 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         firstName = "Igor";
         lastName = "Shingelevich";
         userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
-        userNumber = randomPhone("7", 9);
-        userDayDob = randomLongRange(1L, 31L).toString();
-        userMonthDob = randomMonth().toString();                            // why .toString()?
-        userYearDob = randomLongRange(1950L, 2021L).toString();
+        userNumber = randomPhone("7", 9);                 // how to use regex formatting for phone number?
+        userDayDob = randomDobDay().toString();                  // rnd day implementation according to Month?
+        userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
+        userYearDob = randomDobYear().toString();
         currentAddress = "Moscow";
         userGenter = "Other";
-        userSubject = randomItemFromAllArray(userSubjectsArray);
+        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods?
         userPicture = "src/test/java/resources/a_test_png_logo.png";
         userHobbies = "Sports";
         userState = "NCR";
@@ -72,12 +72,16 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
     }
  /* TODO
-              why .toString() - in variables
-              setSubject(userSubject) to multiple random subjects in one field from the array
-             import Java Faker for Faker faker = new Faker()
-              the file upload -  set rnd from folder
-             reg ex apply ("(\\d{3})(?=\\d)", "$1 ").replaceAll(" ", "-")) for phone number using  randomLongRange(10000L, 1000000l)) .toString()
-             represent Check Modal Window as Selenide Collection for separated rows
+              DONE how to use randomDob() method to split the date of birth into 3 variables?                 utils/RandomUtils.java:157
+              how to pass min year to randomDobYear() method?                                                 utils/RandomUtils.java:179
+              How to parse String and send multiple values to constructor for parsing randomDob().toString     https://stackoverflow.com/questions/41498163/how-to-parse-string-and-send-multiple-values-to-constructor
+              why .toString() - in variables                                                         utils.RandomUtils.randomEmailRndDomainSetLen
+              this. and static
+              setSubject(userSubject) to multiple random subjects in one field from the array              pages.RegistrationPage.setSubject
+             import Java Faker for Faker faker = new Faker()                                    utils/RandomUtils.java:214
+              the file upload -  set rnd from folder                                            pages.RegistrationPage.uploadPicture
+             reg ex apply ("(\\d{3})(?=\\d)", "$1 ").replaceAll(" ", "-")) for phone number using  randomLongRange(10000L, 1000000l)) .toString()       utils.RandomUtils.randomPhone
+             represent Check Modal Window as Selenide Collection for separated rows        pages.RegistrationPage.checkModalWindow
               search alternatives for   userDayDobSelectLocator implementation
               do not understand uploadPicture method alternative                                                      https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L84
               do not understand how to implement stateLocator          $x("//div[text()='" + value + "']").click();     https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L96

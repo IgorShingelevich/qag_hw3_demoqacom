@@ -46,6 +46,10 @@ public class RandomUtils {
         System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));
         System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, d MMMM")));
         System.out.println(randomDate85to23y());
+        System.out.println("randomDob " + randomDob());
+        System.out.println("randomDobDay " + randomDobDay());
+        System.out.println("randomDobMonth " + randomDobMonth());
+        System.out.println("randomDobYear " + randomDobYear());
         System.out.println(("randomSubject  " + randomSubject()));
         System.out.println(("randomSubjectArray " + randomSubjectArray()));
         System.out.println(("randomSubjectSet " + randomSubjectSet()));
@@ -148,6 +152,45 @@ public class RandomUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH_mm"); //("HH:mm"), ("HH:mm:ss"), ("HH:mm:ss.SSS"), ("HH:mm:ss.SSSSSS"), ("HH:mm:ss.SSSSSSSSS")
         return localTime.format(formatter);
     }
+
+    //range from random past year till actual  year
+    public static String randomDob() {
+        LocalDate localDate = LocalDate.now(); // ("dd/MM/yyyy")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy").withLocale(Locale.ENGLISH);  //https://stackoverflow.com/questions/51843760/how-can-i-change-the-language-of-the-months-provided-by-localdate
+        int randomYear = (int) (Math.random() * (localDate.getYear() - 1950 + 1) + 1950);
+        int randomMonth = (int) (Math.random() * 12 + 1);
+        int randomDay = (int) (Math.random() * 28 + 1);
+        return LocalDate.of(randomYear, randomMonth, randomDay).format(formatter).toString();
+    }
+
+    public static String randomDobDay() {
+        String[] dob = randomDob().split("/");
+        return dob[0];
+    }
+    public static String randomDobMonth() {
+        String[] dob = randomDob().split("/");
+        return dob[1];
+    }
+    public static String randomDobYear() {
+        String[] dob = randomDob().split("/");
+        return dob[2];
+    }
+
+   /* public static String randomDobYear2(int minYear) {
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy").withLocale(Locale.ENGLISH);
+        int randomYear = (int) (Math.random() * (localDate.getYear() - minYear + 1) + minYear);
+        int randomMonth = (int) (Math.random() * 12 + 1);
+        int randomDay = (int) (Math.random() * 28 + 1);
+        return LocalDate.of(randomYear, randomMonth, randomDay).format(formatter).toString();
+    }
+    public static String randomDobYear2() {
+        String[] dob = randomDob().split("/");
+        return dob[2];
+    }*/
+    // pass min year to randomDobYear() method
+
+
 
     public static String getActualDayOfWeekAndMonth() {
         LocalDate localDate = LocalDate.now();

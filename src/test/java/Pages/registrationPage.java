@@ -70,7 +70,7 @@ public class RegistrationPage {
         $(".react-datepicker__day--0" + dayArg + ":not(.react-datepicker__day--outside-month)").click();
     }
 
-    public void setSubjects(String randomSubjectListArg) {
+    public void setSubject(String randomSubjectListArg) {
             subjectsInputLocator.setValue(randomSubjectListArg).pressEnter();
 
     }
