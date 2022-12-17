@@ -17,6 +17,7 @@ def selenideVersion = '6.10.1',
 dependencies {
 
     testImplementation(
+            "com.ibm.icu:icu4j:51.1",
              "com.github.javafaker:javafaker:1.0.2",
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter:$junitJupiterVersion",

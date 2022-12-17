@@ -55,11 +55,16 @@ public class RandomUtils {
         System.out.println(("getFirstName " + getFakerFirstName()));
         System.out.println(("getMiddleName " + getFakerMiddleName()));
         System.out.println(("getLastName " + getFakerLastName()));
-        System.out.println(("getFullName " + getFullName()));
-        System.out.println(("getFakerRelatedFirstName " + getFakerRelatedFirstName()));
-        System.out.println(("getFakerRelatedMiddleName " + getFakerRelatedMiddleName()));
-        System.out.println(("getFakerRelatedLastName " + getFakerRelatedLastName()));
+        System.out.println(("relativeFakerSurname " + fakerRelativeSurname()));
+        System.out.println(("relativeFakerName " + fakerRelativeName()));
+        System.out.println(("relativeFakerPatronymic " + relativeFakerPatronymic()));
+        System.out.println(("relativeFakerGender " + fakerRelativeGender()));
+        System.out.println(("cyrillicToLatin " + cyrillicToLatin(fakerRelativeSurname())));
+
+
     }
+
+
 
     public static String randomString(int len) {
         String generatedString = RandomStringUtils.randomAlphabetic(len);
@@ -230,22 +235,6 @@ public class RandomUtils {
         int randomSubject = (int) (Math.random() * userSubjectsMap.size());
         return userSubjectsMap.get(randomSubject);
     }
-   /* public static String setRandomCityFromStateArray() {
-        for (int i = 0; i < userStateAndCityArray.length; i++) {
-            for (int j = 0; j < userStateAndCityArray[i].length; j++) {
-                userCity = userStateAndCityArray[i][j];
-                userState = userStateArray[i];
-            }
-        }
-        return userState + ", " + userCity;
-    }*/
-
-
-/*   public static String setRandomCityFromStateArray() {
-        int randomState = (int) (Math.random() * userStateAndCityArray.length);
-        int randomCity = (int) (Math.random() * userStateAndCityArray[randomState].length);
-        return userStateAndCityArray[randomState][randomCity];
-    }*/
 
      public static String getFakerFirstName(){
         Faker faker = new Faker(new Locale("ru"));
@@ -261,22 +250,56 @@ public class RandomUtils {
         return faker.name().lastName();
     }
 
-    public static String getFullName(){
+    static Faker faker = new Faker(new Locale("ru"));
+    static String SNP = faker.name().fullName().toString();
+
+    static List<String> SNPList = Arrays.asList(SNP.split(" "));
+
+    public static String fakerRelativeSurname(){
+        return SNPList.get(0);
+    }
+
+    public static String fakerRelativeName() {
+        String name = SNPList.get(1);
+        return name;
+    }
+
+    // convert cyrillic String to latin String (for example: "Иванов" to "Ivanov") fakerRelativeSurname
+    /*public static String cyrillicToLatin(String cyrillicString) {
+        String latinString = "";
+        for (int i = 0; i < cyrillicString.length(); i++) {
+            latinString += cyrillicToLatin(cyrillicString.charAt(i));
+        }
+        return latinString;
+    }*/
+
+    // cyrillic to latin String converter
+
+
+
+    public static String relativeFakerPatronymic() {
+        String patronymic = SNPList.get(2);
+        return  patronymic.toString();
+    }
+
+    public static String fakerRelativeGender() {
+        String name = SNPList.get(1);
+        String surname = SNPList.get(0);
+        if (name.endsWith("а") || surname.endsWith("а") || name.endsWith("я") || surname.endsWith("я")) {
+            //then return String "Female"
+            return "Female";
+        } else {
+            return "Male";
+        }
+    }
+
+    public static String fakerCity(){
         Faker faker = new Faker(new Locale("ru"));
-        return faker.name().fullName();
+        return faker.address().city();
     }
-    public static String getFakerRelatedFirstName() {
-        String[] dob = getFullName().split(" ");
-        return dob[0];
-    }
-    public static String getFakerRelatedMiddleName() {
-        String[] dob = getFullName().split(" ");
-        return dob[1];
-    }
-    public static String getFakerRelatedLastName() {
-        String[] dob = getFullName().split(" ");
-        return dob[2];
-    }
+
+
+
 
 
 
