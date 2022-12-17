@@ -1,5 +1,6 @@
 package utils;
 
+import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 import tests.TestData;
 
@@ -51,7 +52,19 @@ public class RandomUtils {
         System.out.println(("randomSubjectArray " + randomSubjectArray()));
         System.out.println(("randomSubjectSet " + randomSubjectSet()));
         System.out.println(("randomSubjectMap " + randomSubjectMap()));
+        System.out.println(("getFirstName " + getFakerFirstName()));
+        System.out.println(("getMiddleName " + getFakerMiddleName()));
+        System.out.println(("getLastName " + getFakerLastName()));
+        System.out.println(("relativeFakerSurname " + fakerRelativeSurname()));
+        System.out.println(("relativeFakerName " + fakerRelativeName()));
+        System.out.println(("relativeFakerPatronymic " + relativeFakerPatronymic()));
+        System.out.println(("relativeFakerGender " + fakerRelativeGender()));
+        System.out.println(("cyrillicToLatin " + cyrillicToLatin(fakerRelativeSurname())));
+
+
     }
+
+
 
     public static String randomString(int len) {
         String generatedString = RandomStringUtils.randomAlphabetic(len);
@@ -196,11 +209,6 @@ public class RandomUtils {
         return localDate.format(formatter);
     }
 
-   /* public static String getFirstName(){
-        Faker faker = new Faker();
-        return faker.name().firstName();
-    }*/
-
     /* examples of using List, Set, Map, HashMap */
 
     public static String randomSubject() {
@@ -227,22 +235,71 @@ public class RandomUtils {
         int randomSubject = (int) (Math.random() * userSubjectsMap.size());
         return userSubjectsMap.get(randomSubject);
     }
-   /* public static String setRandomCityFromStateArray() {
-        for (int i = 0; i < userStateAndCityArray.length; i++) {
-            for (int j = 0; j < userStateAndCityArray[i].length; j++) {
-                userCity = userStateAndCityArray[i][j];
-                userState = userStateArray[i];
-            }
+
+     public static String getFakerFirstName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().firstName();
+    }
+
+    public static String getFakerMiddleName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().firstName();
+    }
+    public static String getFakerLastName(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().lastName();
+    }
+
+    static Faker faker = new Faker(new Locale("ru"));
+    static String SNP = faker.name().fullName().toString();
+
+    static List<String> SNPList = Arrays.asList(SNP.split(" "));
+
+    public static String fakerRelativeSurname(){
+        return SNPList.get(0);
+    }
+
+    public static String fakerRelativeName() {
+        String name = SNPList.get(1);
+        return name;
+    }
+
+    // convert cyrillic String to latin String (for example: "Иванов" to "Ivanov") fakerRelativeSurname
+    /*public static String cyrillicToLatin(String cyrillicString) {
+        String latinString = "";
+        for (int i = 0; i < cyrillicString.length(); i++) {
+            latinString += cyrillicToLatin(cyrillicString.charAt(i));
         }
-        return userState + ", " + userCity;
+        return latinString;
     }*/
 
+    // cyrillic to latin String converter
 
-/*   public static String setRandomCityFromStateArray() {
-        int randomState = (int) (Math.random() * userStateAndCityArray.length);
-        int randomCity = (int) (Math.random() * userStateAndCityArray[randomState].length);
-        return userStateAndCityArray[randomState][randomCity];
-    }*/
+
+
+    public static String relativeFakerPatronymic() {
+        String patronymic = SNPList.get(2);
+        return  patronymic.toString();
+    }
+
+    public static String fakerRelativeGender() {
+        String name = SNPList.get(1);
+        String surname = SNPList.get(0);
+        if (name.endsWith("а") || surname.endsWith("а") || name.endsWith("я") || surname.endsWith("я")) {
+            //then return String "Female"
+            return "Female";
+        } else {
+            return "Male";
+        }
+    }
+
+    public static String fakerCity(){
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.address().city();
+    }
+
+
+
 
 
 
