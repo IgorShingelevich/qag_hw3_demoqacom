@@ -1,4 +1,4 @@
-package OLD;
+package old;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;

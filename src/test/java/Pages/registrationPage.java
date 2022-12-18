@@ -41,86 +41,156 @@ public class RegistrationPage {
             modalTitleLocator = $(".modal-title"),
             tableLocator = $(".table-responsive");
 
-    public void openPage() {
+    public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove();");
         executeJavaScript("$('footer').remove();");
-        practiceFormWrapperLocator.shouldHave(text(TITLE_TEXT));           //check that the page is open at all
+        practiceFormWrapperLocator.shouldHave(text(TITLE_TEXT));
+        return this;
     }
 
-    public void setFirstName(String FirstNameArg) {                        // bad decision to hardcode the value     public void setLastName(){$("#lastName").setValue("Shingelevich");}
-        firstNameInputLocator.setValue(FirstNameArg);
+    public RegistrationPage setFirstName(String firstNameArg) {                        // bad decision to hardcode the value     public void setLastName(){$("#lastName").setValue("Shingelevich");}
+        firstNameInputLocator.setValue(firstNameArg);
+        return this;
     }
 
-    public void setLastName(String LastNameArg) {
-        lastNameInputLocator.setValue(LastNameArg);
+    public RegistrationPage setLastName(String lastNameArg) {
+        lastNameInputLocator.setValue(lastNameArg);
+        return this;
     }
 
-    public void setEmail(String EmailArg) {
-        userEmailInputLocator.setValue(EmailArg);
+    public RegistrationPage setEmail(String emailArg) {
+        userEmailInputLocator.setValue(emailArg);
+        return this;
     }
 
-    public void setUserNumber(String UserNumberArg) {
-        userNumberInputLocator.setValue(UserNumberArg);
+    public RegistrationPage setUserNumber(String userNumberArg) {
+        userNumberInputLocator.setValue(userNumberArg);
+        return this;
     }
 
-    public void setGenterWrapper(String GenterArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
-        userGenterWrapperLocator.$(byText(GenterArg)).click();
+    public RegistrationPage setGenterWrapper(String genterArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
+        userGenterWrapperLocator.$(byText(genterArg)).click();
+        return this;
     }
 
-    // pass to calendarComponent class String day, String month, String year and call method setDate
-    public void setDateOfBirth(String dayArg, String monthArg, String yearArg) {
+    public RegistrationPage setDateOfBirth(String dayArg, String monthArg, String yearArg) {
         calendarComponent.setDateOfBirthCalendar(dayArg, monthArg, yearArg);
+        return this;
     }
 
 
-    public void setSubject(String randomSubjectListArg) {
+    public RegistrationPage setSubject(String randomSubjectListArg) {
             subjectsInputLocator.setValue(randomSubjectListArg).pressEnter();
-
+        return this;
     }
 
-    public void setHobbies(String HobbiesArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
-        hobbiesWrapperLocator.$(byText(HobbiesArg)).click();
+    public RegistrationPage setHobbies(String hobbiesArg) {                           //!!! I did not understand how to set the value of the radio button, but it works
+        hobbiesWrapperLocator.$(byText(hobbiesArg)).click();
+        return this;
     }
 
-    public void uploadPicture(String PicturePathArg) {                   // do not understand other solution https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L84
-        uploadPictureLocator.uploadFile(new File(PicturePathArg));
+    public RegistrationPage uploadPicture(String picturePathArg) {                   // do not understand other solution https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L84
+        uploadPictureLocator.uploadFile(new File(picturePathArg));
+        return this;
     }
 
-    public void setCurrentAddress(String CurrentAddressArg) {
-        currentAddressInputLocator.setValue(CurrentAddressArg);
+    public RegistrationPage setCurrentAddress(String currentAddressArg) {
+        currentAddressInputLocator.setValue(currentAddressArg);
+        return this;
     }
 
-    public void setState(String StateArg) {
+    public RegistrationPage setState(String stateArg) {
         stateContainerLocator.click();
-        stateDropdownNCRLocator.$(byText(StateArg)).click();
+        stateDropdownNCRLocator.$(byText(stateArg)).click();
+        return this;
     }
 
-    public void setCity(String CityArg) {
+    public RegistrationPage setCity(String cityArg) {
         cityContainerLocator.click();
-        cityContainerLocator.$(byText(CityArg)).click();
+        cityContainerLocator.$(byText(cityArg)).click();
+        return this;
     }
 
-    public void clickSubmitButton() {
+    public RegistrationPage clickSubmitButton() {
         submitButtonLocator.click();
+        return this;
     }
 
-    public void openModalWindowComponent() {
+    public RegistrationPage openModalWindowComponent() {
         registrationModalWindowComponent.appearModalWindowComponent(MODAL_TITLE);
+        return this;
     }
 
-    public void checkModalWindowComponent(String FirstNameArg, String LastNameArg, String EmailArg, String UserNumberArg, String GenterArg, String HobbiesArg, String randomSubjectListArg, String CurrentAddressArg, String StateArg, String CityArg) {
-        tableLocator.shouldHave(text(FirstNameArg));
-        tableLocator.shouldHave(text(LastNameArg));
-        tableLocator.shouldHave(text(EmailArg));
-        tableLocator.shouldHave(text(UserNumberArg));
-        tableLocator.shouldHave(text(randomSubjectListArg));
-        tableLocator.shouldHave(text(GenterArg));
-        tableLocator.shouldHave(text(HobbiesArg));
-        tableLocator.shouldHave(text(CurrentAddressArg));
-        tableLocator.shouldHave(text(StateArg));
-        tableLocator.shouldHave(text(CityArg));
+    public RegistrationPage checkModalWindowComponent(String firstNameArg, String lastNameArg, String emailArg, String userNumberArg, String genterArg, String hobbiesArg, String randomSubjectListArg, String currentAddressArg, String stateArg, String cityArg) {
+        tableLocator.shouldHave(
+        text(firstNameArg),
+        text(lastNameArg),
+        text(emailArg),
+        text(userNumberArg),
+        text(randomSubjectListArg),
+        text(genterArg),
+        text(hobbiesArg),
+        text(currentAddressArg),
+        text(stateArg),
+        text(cityArg));
+        return this;
     }
+
+
+
+
+    public RegistrationPage checkStudentName(String firstNameArg, String lastNameArg) {
+        tableLocator.shouldHave(text(firstNameArg + " " + lastNameArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentEmail(String emailArg) {
+        tableLocator.shouldHave(text(emailArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentGender(String genterArg) {
+        tableLocator.shouldHave(text(genterArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentMobile(String userNumberArg) {
+        tableLocator.shouldHave(text(userNumberArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentDateOfBirth(String dayArg, String monthArg, String yearArg) {
+        tableLocator.shouldHave(text(dayArg + " " + monthArg + "," + yearArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentSubjects(String randomSubjectListArg) {
+        tableLocator.shouldHave(text(randomSubjectListArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentHobbies(String hobbiesArg) {
+        tableLocator.shouldHave(text(hobbiesArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentPicture(String picturePathArg) {
+        tableLocator.shouldHave(text(picturePathArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentAddress(String currentAddressArg) {
+        tableLocator.shouldHave(text(currentAddressArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentStateAndCity(String stateArg, String cityArg) {
+        tableLocator.shouldHave(text(stateArg + " " + cityArg));
+        return this;
+    }
+
+
 
 
 

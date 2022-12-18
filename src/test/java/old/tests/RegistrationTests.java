@@ -1,4 +1,4 @@
-package OLD.tests;
+package old.tests;
 
 
 import com.codeborne.selenide.Configuration;
