@@ -13,13 +13,13 @@ public class TestBase {
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-//        Configuration.holdBrowserOpen = true;
-        Configuration.headless = false;    //headless mode
+        Configuration.holdBrowserOpen = false;
+        Configuration.headless = false;
 
     }
 
-    @AfterAll // close browser after 5 seconds
-    static void tearDown() { //copy-paste not understand
+    @AfterAll
+    static void tearDown() {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

@@ -1,6 +1,7 @@
 package tests;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static tests.TestData.*;
@@ -22,6 +23,17 @@ import static utils.RandomUtils.*;
  */
 public class RegistrationWithPageObjectsTests extends TestBase {
 
+    @BeforeEach //before each test open the page
+    void openPage() {
+        registrationPage.openPage();
+    }
+
+   /* @Test1
+    void componentsNameField (){
+
+
+    }*/
+
 
 
 
@@ -36,14 +48,14 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
         userYearDob = randomDobYear().toString();
         currentAddress = fakerCity();
-        userGenter = fakerRelativeGender();  // why .toString()?   error - randomItemFromAllArray
+        userGenter = fakerRelativeGender();
         userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
         userPicture = "src/test/java/resources/a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
         userState = "NCR";
         userCity = "Delhi";
 
-        registrationPage.openPage();
+//        registrationPage.openPage();
         registrationPage.setFirstName(firstName);
         registrationPage.setLastName(lastName);
         registrationPage.setEmail(userEmail);
@@ -66,7 +78,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
              https://mvnrepository.com/artifact/com.ibm.icu/icu4j/51.1
              https://stackoverflow.com/questions/16273318/transliteration-from-cyrillic-to-latin-icu4j-java
              https://ru.stackoverflow.com/questions/633355/%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D0%BD%D0%B0-java
-
               difference between utils.RandomUtils.randomItemFromAllArray and _OLD_ method that cause the error with randomItemFromAllArray    ArrayIndexOutOfBoundsException  https://rollbar.com/blog/how-to-fix-the-array-index-out-of-bounds-excepiton-in-java/
               how to pass min year to randomDobYear() method?       utils.RandomUtils.randomDob
               How to parse String and send multiple values to constructor for parsing randomDob().toString     https://stackoverflow.com/questions/41498163/how-to-parse-string-and-send-multiple-values-to-constructor

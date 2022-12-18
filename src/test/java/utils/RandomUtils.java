@@ -59,7 +59,6 @@ public class RandomUtils {
         System.out.println(("relativeFakerName " + fakerRelativeName()));
         System.out.println(("relativeFakerPatronymic " + relativeFakerPatronymic()));
         System.out.println(("relativeFakerGender " + fakerRelativeGender()));
-        System.out.println(("cyrillicToLatin " + cyrillicToLatin(fakerRelativeSurname())));
 
 
     }
@@ -122,7 +121,7 @@ public class RandomUtils {
     }
 
     public static String randomEmailRndDomainSetLen (int lenArg){
-        int randomIndex = randomIntRange(0, TestData.randomDomainArray.length );
+        int randomIndex = (int) (Math.random() * TestData.randomDomainArray.length ); // error with randomIndex = randomIntRange(0, TestData.randomDomainArray.length ); why -1
         return "test_mail_" + LocalDate.now() + "_" + LocalTime.now().format(DateTimeFormatter.ofPattern("HH_mm")) + randomString(lenArg).toLowerCase() + "@" + TestData.randomDomainArray[randomIndex];
     }
 
@@ -264,19 +263,6 @@ public class RandomUtils {
         return name;
     }
 
-    // convert cyrillic String to latin String (for example: "Иванов" to "Ivanov") fakerRelativeSurname
-    /*public static String cyrillicToLatin(String cyrillicString) {
-        String latinString = "";
-        for (int i = 0; i < cyrillicString.length(); i++) {
-            latinString += cyrillicToLatin(cyrillicString.charAt(i));
-        }
-        return latinString;
-    }*/
-
-    // cyrillic to latin String converter
-
-
-
     public static String relativeFakerPatronymic() {
         String patronymic = SNPList.get(2);
         return  patronymic.toString();
@@ -285,7 +271,7 @@ public class RandomUtils {
     public static String fakerRelativeGender() {
         String name = SNPList.get(1);
         String surname = SNPList.get(0);
-        if (name.endsWith("а") || surname.endsWith("а") || name.endsWith("я") || surname.endsWith("я")) {
+        if ( surname.endsWith("а") ||  surname.endsWith("я")) {
             //then return String "Female"
             return "Female";
         } else {
