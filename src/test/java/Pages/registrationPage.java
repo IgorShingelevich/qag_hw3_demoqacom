@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import java.io.File;
 
@@ -10,6 +11,8 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+
+    CalendarComponent calendarComponent = new CalendarComponent();
 
     private final String TITLE_TEXT = "Student Registration Form"; // TITLE_TEXT is constant
     private final String MODAL_TITLE = "Thanks for submitting the form"; // MODAL_TITLE is constant
@@ -63,12 +66,11 @@ public class RegistrationPage {
         userGenterWrapperLocator.$(byText(GenterArg)).click();
     }
 
+    // pass to calendarComponent class String day, String month, String year and call method setDate
     public void setDateOfBirth(String dayArg, String monthArg, String yearArg) {
-        userDateOfBirthContainerLocator.click();
-        userMonthDobSelectLocator.selectOption(monthArg);
-        userYearDobSelectLocator.selectOption(yearArg);
-        $(".react-datepicker__day--0" + dayArg + ":not(.react-datepicker__day--outside-month)").click();
+        calendarComponent.setDateOfBirthCalendar(dayArg, monthArg, yearArg);
     }
+
 
     public void setSubject(String randomSubjectListArg) {
             subjectsInputLocator.setValue(randomSubjectListArg).pressEnter();
