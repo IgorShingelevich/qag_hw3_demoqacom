@@ -18,9 +18,11 @@ import static utils.RandomUtils.*;
  * @7.utils.RandomUtils Create a class for RandomUtils class and call it from RegistrationPage class.
  * @8.TestData_declare In TestData declare the variables for the data that will be used in the test
  * @9.TestClass_initialize In TestClass initialize the variables with the data from TestData class inside the test method
- *
+ * @10.CalendarComponent set methods  for CalendarComponent class and call it from RegistrationPage class. Add exemplar of CalendarComponent class in RegistrationPage class
+ * @11.RegistrationModalWindowComponent set methods  for RegistrationModalWindowComponent class and call it from RegistrationPage class. Add exemplar of RegistrationModalWindowComponent class in RegistrationPage class
  */
 public class RegistrationWithPageObjectsTests extends TestBase {
+
 
     @BeforeEach //before each test open the page
     void openPage() {
@@ -62,8 +64,8 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.setState(userState);
         registrationPage.setCity(userCity);
         registrationPage.clickSubmitButton();
-        registrationPage.openModalWindow();
-        registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
+        registrationPage.openModalWindowComponent();
+        registrationPage.checkModalWindowComponent(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
     }
 
 

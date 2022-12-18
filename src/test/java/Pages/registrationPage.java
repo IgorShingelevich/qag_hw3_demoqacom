@@ -2,17 +2,19 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.RegistrationModalWindowComponent;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    RegistrationModalWindowComponent registrationModalWindowComponent = new RegistrationModalWindowComponent();
+
 
     private final String TITLE_TEXT = "Student Registration Form"; // TITLE_TEXT is constant
     private final String MODAL_TITLE = "Thanks for submitting the form"; // MODAL_TITLE is constant
@@ -103,12 +105,11 @@ public class RegistrationPage {
         submitButtonLocator.click();
     }
 
-    public void openModalWindow() {
-        modalTitleLocator.should(appear);
-        modalTitleLocator.shouldHave(text(MODAL_TITLE));
+    public void openModalWindowComponent() {
+        registrationModalWindowComponent.appearModalWindowComponent(MODAL_TITLE);
     }
 
-    public void checkModalWindow(String FirstNameArg, String LastNameArg, String EmailArg, String UserNumberArg, String GenterArg, String HobbiesArg, String randomSubjectListArg, String CurrentAddressArg, String StateArg, String CityArg) {
+    public void checkModalWindowComponent(String FirstNameArg, String LastNameArg, String EmailArg, String UserNumberArg, String GenterArg, String HobbiesArg, String randomSubjectListArg, String CurrentAddressArg, String StateArg, String CityArg) {
         tableLocator.shouldHave(text(FirstNameArg));
         tableLocator.shouldHave(text(LastNameArg));
         tableLocator.shouldHave(text(EmailArg));
@@ -120,6 +121,7 @@ public class RegistrationPage {
         tableLocator.shouldHave(text(StateArg));
         tableLocator.shouldHave(text(CityArg));
     }
+
 
 
 }
