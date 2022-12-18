@@ -59,11 +59,7 @@ public class RandomUtils {
         System.out.println(("relativeFakerName " + fakerRelativeName()));
         System.out.println(("relativeFakerPatronymic " + relativeFakerPatronymic()));
         System.out.println(("relativeFakerGender " + fakerRelativeGender()));
-
-
     }
-
-
 
     public static String randomString(int len) {
         String generatedString = RandomStringUtils.randomAlphabetic(len);

@@ -1,8 +1,7 @@
 package tests;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static tests.TestData.*;
 import static utils.RandomUtils.*;
@@ -19,23 +18,20 @@ import static utils.RandomUtils.*;
  * @7.utils.RandomUtils Create a class for RandomUtils class and call it from RegistrationPage class.
  * @8.TestData_declare In TestData declare the variables for the data that will be used in the test
  * @9.TestClass_initialize In TestClass initialize the variables with the data from TestData class inside the test method
- *
+ * @10.CalendarComponent set methods  for CalendarComponent class and call it from RegistrationPage class. Add exemplar of CalendarComponent class in RegistrationPage class
+ * @11.RegistrationModalWindowComponent set methods  for RegistrationModalWindowComponent class and call it from RegistrationPage class. Add exemplar of RegistrationModalWindowComponent class in RegistrationPage class
  */
 public class RegistrationWithPageObjectsTests extends TestBase {
+
 
     @BeforeEach //before each test open the page
     void openPage() {
         registrationPage.openPage();
     }
 
-   /* @Test1
-    void componentsNameField (){
 
-
-    }*/
-
-
-
+@DisplayName("Successful registration with single form verification")
+@Tags({@Tag("web"), @Tag("regression")})
 
     @Test
     void successfulRegistrationTest() {
@@ -50,29 +46,37 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
         userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
-        userPicture = "src/test/java/resources/a_test_png_logo.png";
+        userPictureRepoPath ="src/test/resources/a_test_png_logo.png" ; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
+        userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
         userState = "NCR";
         userCity = "Delhi";
 
-//        registrationPage.openPage();
-        registrationPage.setFirstName(firstName);
-        registrationPage.setLastName(lastName);
-        registrationPage.setEmail(userEmail);
-        registrationPage.setGenterWrapper(userGenter);
-        registrationPage.setDateOfBirth(userDayDob, userMonthDob, userYearDob);
-        registrationPage.setUserNumber(userNumber);
-        registrationPage.setSubject(userSubject);
-        registrationPage.setHobbies(userHobbies);
-        registrationPage.uploadPicture(userPicture);
-        registrationPage.setCurrentAddress(currentAddress);
-        registrationPage.setState(userState);
-        registrationPage.setCity(userCity);
-        registrationPage.clickSubmitButton();
-        registrationPage.openModalWindow();
-        registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
+        registrationPage.setFirstName(firstName)
+        .setLastName(lastName)
+        .setEmail(userEmail)
+        .setGenterWrapper(userGenter)
+        .setDateOfBirth(userDayDob, userMonthDob, userYearDob)
+        .setUserNumber(userNumber)
+        .setSubject(userSubject)
+        .setHobbies(userHobbies)
+        .uploadPicture(userPictureRepoPath)
+        .setCurrentAddress(currentAddress)
+        .setState(userState)
+        .setCity(userCity)
+        .clickSubmitButton()
+        .openModalWindowComponent();
 
+        registrationPage.checkModalWindowComponent(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
     }
+
+
+
+
+
+
+
+
  /* TODO
              learn transliteration library handling for Test Data
              https://mvnrepository.com/artifact/com.ibm.icu/icu4j/51.1

@@ -14,6 +14,7 @@ public class TestData {
             currentAddress,
             userGenter,
             userPicture,
+            userPictureRepoPath,
             userSubject,
             userHobbies,
             userState,
