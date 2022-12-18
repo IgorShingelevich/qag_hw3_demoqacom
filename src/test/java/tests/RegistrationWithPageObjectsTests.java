@@ -24,17 +24,25 @@ import static utils.RandomUtils.*;
 public class RegistrationWithPageObjectsTests extends TestBase {
 
 
-    @BeforeEach //before each test open the page
+    @BeforeEach
+        //before each test open the page
     void openPage() {
         registrationPage.openPage();
     }
 
+    @AfterEach
+    void closePage() {
+        registrationPage
+                .closeModalWindowComponent()
+                .closeBrowser();
+    }
 
-@DisplayName("Successful registration with single form verification")
-@Tags({@Tag("web"), @Tag("regression")})
+
+    @DisplayName("successful registration with single form check")
+    @Tags({@Tag("web"), @Tag("regression")})
 
     @Test
-    void successfulRegistrationTest() {
+    void successfulRegistrationTestSingleCheck() {
 
         firstName = fakerRelativeName();
         lastName = fakerRelativeSurname();
@@ -46,28 +54,77 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
         userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
-        userPictureRepoPath ="src/test/resources/a_test_png_logo.png" ; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
+        userPictureRepoPath = "src/test/resources/a_test_png_logo.png"; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
         userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
         userState = "NCR";
         userCity = "Delhi";
 
-        registrationPage.setFirstName(firstName)
-        .setLastName(lastName)
-        .setEmail(userEmail)
-        .setGenterWrapper(userGenter)
-        .setDateOfBirth(userDayDob, userMonthDob, userYearDob)
-        .setUserNumber(userNumber)
-        .setSubject(userSubject)
-        .setHobbies(userHobbies)
-        .uploadPicture(userPictureRepoPath)
-        .setCurrentAddress(currentAddress)
-        .setState(userState)
-        .setCity(userCity)
-        .clickSubmitButton()
-        .openModalWindowComponent();
+        registrationPage
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGenterWrapper(userGenter)
+                .setDateOfBirth(userDayDob, userMonthDob, userYearDob)
+                .setUserNumber(userNumber)
+                .setSubject(userSubject)
+                .setHobbies(userHobbies)
+                .uploadPicture(userPictureRepoPath)
+                .setCurrentAddress(currentAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .clickSubmitButton()
+                .openModalWindowComponent()
+                .checkModalWindowComponent(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
+    }
 
-        registrationPage.checkModalWindowComponent(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
+    @DisplayName("successful registration with multiple line form check")
+    @Tags({@Tag("web"), @Tag("regression")})
+
+    @Test
+    void successfulRegistrationTestMultipleChecks() {
+
+        firstName = fakerRelativeName();
+        lastName = fakerRelativeSurname();
+        userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
+        userNumber = randomPhone("7", 9);                 // how to use regex formatting for phone number?
+        userDayDob = randomDobDay().toString();                  // rnd day implementation according to Month?
+        userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
+        userYearDob = randomDobYear().toString();
+        currentAddress = fakerCity();
+        userGenter = fakerRelativeGender();
+        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
+        userPictureRepoPath = "src/test/resources/a_test_png_logo.png"; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
+        userPicture = "a_test_png_logo.png";
+        userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
+        userState = "NCR";
+        userCity = "Delhi";
+
+        registrationPage
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGenterWrapper(userGenter)
+                .setDateOfBirth(userDayDob, userMonthDob, userYearDob)
+                .setUserNumber(userNumber)
+                .setSubject(userSubject)
+                .setHobbies(userHobbies)
+                .uploadPicture(userPictureRepoPath)
+                .setCurrentAddress(currentAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .clickSubmitButton()
+                .openModalWindowComponent()
+                .checkStudentName(firstName)
+                .checkStudentEmail(userEmail)
+                .checkStudentGender(userGenter)
+                .checkStudentMobile(userNumber)
+                .checkStudentDateOfBirth(userDayDob, userMonthDob, userYearDob)
+                .checkStudentSubjects(userSubject)
+                .checkStudentHobbies(userHobbies)
+                .checkStudentPicture(userPicture)
+                .checkStudentAddress(currentAddress)
+                .checkStudentStateAndCity(userState, userCity);
     }
 
 
