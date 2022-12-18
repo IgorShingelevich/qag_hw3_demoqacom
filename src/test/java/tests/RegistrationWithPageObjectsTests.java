@@ -46,25 +46,27 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
         userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
-        userPicture = "src/test/java/resources/a_test_png_logo.png";
+        userPictureRepoPath ="src/test/resources/a_test_png_logo.png" ; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
+        userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
         userState = "NCR";
         userCity = "Delhi";
 
-        registrationPage.setFirstName(firstName);
-        registrationPage.setLastName(lastName);
-        registrationPage.setEmail(userEmail);
-        registrationPage.setGenterWrapper(userGenter);
-        registrationPage.setDateOfBirth(userDayDob, userMonthDob, userYearDob);
-        registrationPage.setUserNumber(userNumber);
-        registrationPage.setSubject(userSubject);
-        registrationPage.setHobbies(userHobbies);
-        registrationPage.uploadPicture(userPicture);
-        registrationPage.setCurrentAddress(currentAddress);
-        registrationPage.setState(userState);
-        registrationPage.setCity(userCity);
-        registrationPage.clickSubmitButton();
-        registrationPage.openModalWindowComponent();
+        registrationPage.setFirstName(firstName)
+        .setLastName(lastName)
+        .setEmail(userEmail)
+        .setGenterWrapper(userGenter)
+        .setDateOfBirth(userDayDob, userMonthDob, userYearDob)
+        .setUserNumber(userNumber)
+        .setSubject(userSubject)
+        .setHobbies(userHobbies)
+        .uploadPicture(userPictureRepoPath)
+        .setCurrentAddress(currentAddress)
+        .setState(userState)
+        .setCity(userCity)
+        .clickSubmitButton()
+        .openModalWindowComponent();
+
         registrationPage.checkModalWindowComponent(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
     }
 
