@@ -140,8 +140,13 @@ public class RegistrationPage {
 
 
 
-    public RegistrationPage checkStudentName(String firstNameArg, String lastNameArg) {
-        tableLocator.shouldHave(text(firstNameArg + " " + lastNameArg));
+    public RegistrationPage checkStudentName(String firstNameArg) {
+        tableLocator.shouldHave(text(firstNameArg));
+        return this;
+    }
+
+    public RegistrationPage checkStudentLastName(String lastNameArg) {
+        tableLocator.shouldHave(text(lastNameArg));
         return this;
     }
 
@@ -190,6 +195,24 @@ public class RegistrationPage {
         return this;
     }
 
+    public RegistrationPage verifyResult(String key, String value) {
+        registrationModalWindowComponent.verifyResultsModalWindowComponent(key, value);
+        return this;
+    }
+
+
+
+    public void closeBrowser() {
+        closeWebDriver();
+    }
+
+
+
+
+    public RegistrationPage closeModalWindowComponent() {
+        registrationModalWindowComponent.closeModalWindowComponent();
+        return this;
+    }
 
 
 

@@ -11,7 +11,7 @@ import static utils.RandomUtils.*;
  *
  * @1.PageClass Create a class for RegistrationPage class (and extend it from TestBase class)
  * @2.TestBase Create a class for TestBase class and call it from RegistrationPage class. BeforeAll and AfterAll methods should be in TestBase class
- * @3.TestClass Create a class for RegistrationWithPageObjectsTests class
+ * @3.TestClass Create a class for RegistrationPage class
  * @4.PageClass_SelenideElement In RegistrationPage class create SelenideElement for all the locators.  For example: private SelenideElement firstNameInputLocator =  $("#firstName");
  * @5.pageMethods In RegistrationPage class create  a set of pageMethods -From  openPage() to submit()
  * @6.testMethods In RegistrationTest class then call the methods   openPage() from the RegistrationPage class in testMethods- new RegistrationPage.openPage()
@@ -21,7 +21,7 @@ import static utils.RandomUtils.*;
  * @10.CalendarComponent set methods  for CalendarComponent class and call it from RegistrationPage class. Add exemplar of CalendarComponent class in RegistrationPage class
  * @11.RegistrationModalWindowComponent set methods  for RegistrationModalWindowComponent class and call it from RegistrationPage class. Add exemplar of RegistrationModalWindowComponent class in RegistrationPage class
  */
-public class RegistrationWithPageObjectsTests extends TestBase {
+public class RegistrationPage extends TestBase {
 
 
     @BeforeEach
