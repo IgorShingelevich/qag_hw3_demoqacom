@@ -177,7 +177,7 @@ public class RandomUtils {
         return dob[2];
     }
 
-   /* int minYear
+   /* int minYear??
    public static String randomDobYear2(int minYear) {
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMMM/yyyy").withLocale(Locale.ENGLISH);
@@ -279,15 +279,6 @@ public class RandomUtils {
         Faker faker = new Faker(new Locale("ru"));
         return faker.address().city();
     }
-
-
-
-
-
-
-
-
-
 
     /**regex examples
      *  System.out.println(generatedString.matches("[a-zA-Z]+"));

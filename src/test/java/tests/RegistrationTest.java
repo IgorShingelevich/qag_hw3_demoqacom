@@ -9,19 +9,19 @@ import static utils.RandomUtils.*;
 /**
  * Page Object organisation *
  *
- * @1.PageClass Create a class for RegistrationPage class (and extend it from TestBase class)
- * @2.TestBase Create a class for TestBase class and call it from RegistrationPage class. BeforeAll and AfterAll methods should be in TestBase class
- * @3.TestClass Create a class for RegistrationWithPageObjectsTests class
- * @4.PageClass_SelenideElement In RegistrationPage class create SelenideElement for all the locators.  For example: private SelenideElement firstNameInputLocator =  $("#firstName");
- * @5.pageMethods In RegistrationPage class create  a set of pageMethods -From  openPage() to submit()
- * @6.testMethods In RegistrationTest class then call the methods   openPage() from the RegistrationPage class in testMethods- new RegistrationPage.openPage()
- * @7.utils.RandomUtils Create a class for RandomUtils class and call it from RegistrationPage class.
+ * @1.PageClass Create a class for RegistrationTest class (and extend it from TestBase class)
+ * @2.TestBase Create a class for TestBase class and call it from RegistrationTest class. BeforeAll and AfterAll methods should be in TestBase class
+ * @3.TestClass Create a class for RegistrationTest class
+ * @4.PageClass_SelenideElement In RegistrationTest class create SelenideElement for all the locators.  For example: private SelenideElement firstNameInputLocator =  $("#firstName");
+ * @5.pageMethods In RegistrationTest class create  a set of pageMethods -From  openPage() to submit()
+ * @6.testMethods In RegistrationTest class then call the methods   openPage() from the RegistrationTest class in testMethods- new RegistrationTest.openPage()
+ * @7.utils.RandomUtils Create a class for RandomUtils class and call it from RegistrationTest class.
  * @8.TestData_declare In TestData declare the variables for the data that will be used in the test
  * @9.TestClass_initialize In TestClass initialize the variables with the data from TestData class inside the test method
- * @10.CalendarComponent set methods  for CalendarComponent class and call it from RegistrationPage class. Add exemplar of CalendarComponent class in RegistrationPage class
- * @11.RegistrationModalWindowComponent set methods  for RegistrationModalWindowComponent class and call it from RegistrationPage class. Add exemplar of RegistrationModalWindowComponent class in RegistrationPage class
+ * @10.CalendarComponent set methods  for CalendarComponent class and call it from RegistrationTest class. Add exemplar of CalendarComponent class in RegistrationTest class
+ * @11.RegistrationModalWindowComponent set methods  for RegistrationModalWindowComponent class and call it from RegistrationTest class. Add exemplar of RegistrationModalWindowComponent class in RegistrationTest class
  */
-public class RegistrationWithPageObjectsTests extends TestBase {
+public class RegistrationTest extends TestBase {
 
 
     @BeforeEach
@@ -46,14 +46,14 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
         firstName = fakerRelativeName();
         lastName = fakerRelativeSurname();
-        userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
+        userEmail = randomEmailRndDomainSetLen(2);
         userNumber = randomPhone("7", 9);                 // how to use regex formatting for phone number?
-        userDayDob = randomDobDay().toString();                  // rnd day implementation according to Month?
-        userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
-        userYearDob = randomDobYear().toString();
+        userDayDob = randomDobDay();
+        userMonthDob = randomDobMonth();
+        userYearDob = randomDobYear();
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
-        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
+        userSubject = randomItemFromAllArray(userSubjectsArray);
         userPictureRepoPath = "src/test/resources/a_test_png_logo.png"; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
         userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
@@ -86,14 +86,14 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
         firstName = fakerRelativeName();
         lastName = fakerRelativeSurname();
-        userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
+        userEmail = randomEmailRndDomainSetLen(2);
         userNumber = randomPhone("7", 9);                 // how to use regex formatting for phone number?
-        userDayDob = randomDobDay().toString();                  // rnd day implementation according to Month?
-        userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
-        userYearDob = randomDobYear().toString();
+        userDayDob = randomDobDay();
+        userMonthDob = randomDobMonth();
+        userYearDob = randomDobYear();
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
-        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
+        userSubject = randomItemFromAllArray(userSubjectsArray);
         userPictureRepoPath = "src/test/resources/a_test_png_logo.png"; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
         userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
@@ -144,11 +144,11 @@ public class RegistrationWithPageObjectsTests extends TestBase {
               How to parse String and send multiple values to constructor for parsing randomDob().toString     https://stackoverflow.com/questions/41498163/how-to-parse-string-and-send-multiple-values-to-constructor
               why .toString() - in variables                                                         utils.RandomUtils.randomEmailRndDomainSetLen
               this. and static
-              setSubject(userSubject) to multiple random subjects in one field from the array              pages.RegistrationPage.setSubject
+              setSubject(userSubject) to multiple random subjects in one field from the array              pages.RegistrationTest.setSubject
              import Java Faker for Faker faker = new Faker()                                    utils/RandomUtils.java:214
-              the file upload -  set rnd from folder                                            pages.RegistrationPage.uploadPicture
+              the file upload -  set rnd from folder                                            pages.RegistrationTest.uploadPicture
              reg ex apply ("(\\d{3})(?=\\d)", "$1 ").replaceAll(" ", "-")) for phone number using  randomLongRange(10000L, 1000000l)) .toString()       utils.RandomUtils.randomPhone
-             represent Check Modal Window as Selenide Collection for separated rows        pages.RegistrationPage.checkModalWindow
+             represent Check Modal Window as Selenide Collection for separated rows        pages.RegistrationTest.checkModalWindow
               search alternatives for   userDayDobSelectLocator implementation
               do not understand uploadPicture method alternative                                                      https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L84
               do not understand how to implement stateLocator          $x("//div[text()='" + value + "']").click();     https://github.com/MrDos180/demoqa_test/blob/ddfc0be12eede26a10962a9432ef7ec5c760f5a5/src/test/java/pages/RegistrationPage.java#L96
