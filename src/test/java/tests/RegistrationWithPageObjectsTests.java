@@ -1,8 +1,7 @@
 package tests;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static tests.TestData.*;
 import static utils.RandomUtils.*;
@@ -28,14 +27,9 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.openPage();
     }
 
-   /* @Test1
-    void componentsNameField (){
 
-
-    }*/
-
-
-
+@DisplayName("Successful registration with single form verification")
+@Tags({@Tag("web"), @Tag("regression")})
 
     @Test
     void successfulRegistrationTest() {
@@ -55,7 +49,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         userState = "NCR";
         userCity = "Delhi";
 
-//        registrationPage.openPage();
         registrationPage.setFirstName(firstName);
         registrationPage.setLastName(lastName);
         registrationPage.setEmail(userEmail);
@@ -71,8 +64,15 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         registrationPage.clickSubmitButton();
         registrationPage.openModalWindow();
         registrationPage.checkModalWindow(firstName, lastName, userEmail, userNumber, userGenter, userHobbies, userSubject, currentAddress, userState, userCity);
-
     }
+
+
+
+
+
+
+
+
  /* TODO
              learn transliteration library handling for Test Data
              https://mvnrepository.com/artifact/com.ibm.icu/icu4j/51.1
