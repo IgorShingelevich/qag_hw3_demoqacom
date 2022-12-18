@@ -46,14 +46,14 @@ public class RegistrationTest extends TestBase {
 
         firstName = fakerRelativeName();
         lastName = fakerRelativeSurname();
-        userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
+        userEmail = randomEmailRndDomainSetLen(2);
         userNumber = randomPhone("7", 9);                 // how to use regex formatting for phone number?
-        userDayDob = randomDobDay().toString();                  // rnd day implementation according to Month?
-        userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
-        userYearDob = randomDobYear().toString();
+        userDayDob = randomDobDay();
+        userMonthDob = randomDobMonth();
+        userYearDob = randomDobYear();
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
-        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
+        userSubject = randomItemFromAllArray(userSubjectsArray);
         userPictureRepoPath = "src/test/resources/a_test_png_logo.png"; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
         userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
@@ -86,14 +86,14 @@ public class RegistrationTest extends TestBase {
 
         firstName = fakerRelativeName();
         lastName = fakerRelativeSurname();
-        userEmail = randomEmailRndDomainSetLen(2).toString();             // why .toString()?
+        userEmail = randomEmailRndDomainSetLen(2);
         userNumber = randomPhone("7", 9);                 // how to use regex formatting for phone number?
-        userDayDob = randomDobDay().toString();                  // rnd day implementation according to Month?
-        userMonthDob = randomDobMonth().toString();                            // why .toString()? determined list - no arguments in methods?
-        userYearDob = randomDobYear().toString();
+        userDayDob = randomDobDay();
+        userMonthDob = randomDobMonth();
+        userYearDob = randomDobYear();
         currentAddress = fakerCity();
         userGenter = fakerRelativeGender();
-        userSubject = randomItemFromAllArray(userSubjectsArray);        // undetermined list - set arguments in methods? error -  randomItemFromAllArray
+        userSubject = randomItemFromAllArray(userSubjectsArray);
         userPictureRepoPath = "src/test/resources/a_test_png_logo.png"; // ??  = "src/test/resources/" + userPicture;  = "src/test/resources/ " + userPicture
         userPicture = "a_test_png_logo.png";
         userHobbies = randomItemFromAllArray(userHobbiesArray).toString();  // error - randomItemFromAllArray
